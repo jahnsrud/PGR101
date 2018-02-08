@@ -32,6 +32,8 @@ public class PhotoPost
         timestamp = System.currentTimeMillis();
         likes = 0;
         comments = new ArrayList<>();
+        addComment("Ufine kommentarer vil bli slettet!");
+        
     }
 
     /**

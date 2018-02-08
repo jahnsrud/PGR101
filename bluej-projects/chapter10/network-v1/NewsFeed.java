@@ -65,4 +65,11 @@ public class NewsFeed
             System.out.println();   // empty line between posts
         }
     }
+    
+    public int getTotalPostCount() {
+        
+        return messages.size() + photos.size();
+        
+    }
+    
 }

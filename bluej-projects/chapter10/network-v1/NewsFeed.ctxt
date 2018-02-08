@@ -13,4 +13,6 @@ comment3.text=\n\ Add\ a\ photo\ post\ to\ the\ news\ feed.\n\ \n\ @param\ photo
 comment4.params=
 comment4.target=void\ show()
 comment4.text=\n\ Show\ the\ news\ feed.\ Currently\:\ print\ the\ news\ feed\ details\ to\ the\n\ terminal.\ (To\ do\:\ replace\ this\ later\ with\ display\ in\ web\ browser.)\n
-numComments=5
+comment5.params=
+comment5.target=int\ getTotalPostCount()
+numComments=6
