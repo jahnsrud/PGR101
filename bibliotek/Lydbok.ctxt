@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Lydbok
+comment0.text=\n\ Write\ a\ description\ of\ class\ Lydbok\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=ISBN\ author\ title\ publisher\ inStock\ durationInMinutes\ numberOfDiscs\ narrator
+comment1.target=Lydbok(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ int,\ int,\ int,\ java.lang.String)
+comment2.params=durationInMinutes
+comment2.target=void\ setDurationInMinutes(int)
+comment3.params=numberOfDiscs
+comment3.target=void\ setNumberOfDiscs(int)
+comment4.params=narrator
+comment4.target=void\ setNarrator(java.lang.String)
+comment5.params=
+comment5.target=int\ getDurationInMinutes()
+comment6.params=
+comment6.target=int\ getNumberOfDiscs()
+comment7.params=
+comment7.target=java.lang.String\ getNarrator()
+comment8.params=
+comment8.target=void\ preview()
+numComments=9

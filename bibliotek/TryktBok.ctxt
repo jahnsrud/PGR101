@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=TryktBok
+comment0.text=\n\ Write\ a\ description\ of\ class\ TryktBok\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=ISBN\ author\ title\ publisher\ inStock\ pages\ numberOfCopies
+comment1.target=TryktBok(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ int,\ int,\ int)
+comment2.params=pages
+comment2.target=void\ setPages(int)
+comment3.params=numberOfCopies
+comment3.target=void\ setNumberOfCopies(int)
+comment4.params=
+comment4.target=int\ getPages()
+comment5.params=
+comment5.target=int\ getNumberOfCopies()
+comment6.params=
+comment6.target=void\ preview()
+numComments=7
