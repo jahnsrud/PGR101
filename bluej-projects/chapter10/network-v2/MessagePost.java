@@ -34,9 +34,38 @@ public class MessagePost extends Post
         return message;
     }
     
-    public void printShortSummary() {
+    public void display() {
+        System.out.println(getUsername());
+        System.out.println(message);
+        System.out.print(getTime());
+        System.out.print(getLikes());
+        System.out.println(getComments());
+    }
+    
+    /**
+     * TODO: Fix
+     */
+    @Override
+    public boolean equals(Object o) {
      
-        System.out.println("Message post from " + getUsername());
+        if (this == o) {
+            return true;
+        } 
+        
+        if(!(o instanceof MessagePost)) {
+            return false;
+        }
+        
+        if(!super.equals(o)) {
+            return false;
+        }
+        
+        MessagePost otherMessagePost = (MessagePost) o;
+        if(!this.message.equals(otherMessagePost.message)) {
+            return false;
+        }
+        
+        return true;
         
     }
 }

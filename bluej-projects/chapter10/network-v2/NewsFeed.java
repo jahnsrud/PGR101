@@ -25,6 +25,21 @@ public class NewsFeed
         posts = new ArrayList<>();
     }
 
+    public void populateNewsFeed() {
+
+        MessagePost m1 = new MessagePost("@jahnsrud", "Høyskolen Kristiania :o");
+        MessagePost m2 = new MessagePost("@jahmar17", "PGR101 oh yeah");
+
+        PhotoPost p1 = new PhotoPost("@jahnsrud", "fintbilde.jpg", "Kult!");
+        PhotoPost p2 = new PhotoPost("@jahmar17", "farlig.png", "heeey");
+
+        addPost(m1);
+        addPost(m2);        
+        addPost(p1);
+        addPost(p2);      
+
+    }
+
     /**
      * Add a post to the news feed.
      * 
@@ -47,5 +62,32 @@ public class NewsFeed
             post.display();
             System.out.println();   // empty line between posts
         }
+        
+    }
+    
+    public void showAllMessagePosts() {
+        
+       for(Post post : posts) {
+            if (post instanceof MessagePost) {
+                post.display();
+                System.out.println();
+            } else {
+                System.out.println("Ignoring...");
+            }
+        }   
+        
+    }
+    
+    public void showAllPhotoPosts() {
+
+        for(Post post : posts) {
+            if (post instanceof PhotoPost) {
+                post.display();
+                System.out.println();
+            } else {
+                System.out.println("Ignoring...");
+            }
+        }
+
     }
 }

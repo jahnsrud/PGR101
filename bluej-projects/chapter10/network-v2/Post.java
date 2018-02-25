@@ -61,13 +61,39 @@ public class Post
      * 
      * @return The post's creation time, as a system time value.
      */
-    public long getTimeStamp()
+    protected long getTimeStamp()
     {
         return timestamp;
     }
     
-    public String getUsername() {
+    protected String getUsername() {
         return username;
+    }
+    
+    protected String getComments() {
+        
+        if(comments.isEmpty()) {
+            return "   No comments.";
+        }
+        else {
+            return "   " + comments.size() + " comment(s). Click here to view.";
+        }
+        
+    }
+    
+    protected String getLikes() {
+        
+        if(likes > 0) {
+            return "  -  " + likes + " people like this.";
+        }
+        else {
+            return "";
+        }
+        
+    }
+    
+    protected String getTime() {
+        return timeString(timestamp);
     }
 
     /**
@@ -76,24 +102,45 @@ public class Post
      * (Currently: Print to the text terminal. This is simulating display 
      * in a web browser for now.)
      */
+    
     public void display()
-    {
-        System.out.println(username);
-        System.out.print(timeString(timestamp));
+    {   
         
+       
+        
+    }
+    
+    @Override
+    public String toString() {
+        
+        StringBuilder builder = new StringBuilder();
+        builder.append(username);
+        builder.append("\n");
+        builder.append(timeString(timestamp));
+        builder.append("\n");
+        
+        /*
+         * 
+         *  builder.append("likes");
+        builder.append('\n');
         if(likes > 0) {
-            System.out.println("  -  " + likes + " people like this.");
+            builder.append("  -  " + likes + " people like this.");
         }
         else {
             System.out.println();
         }
         
         if(comments.isEmpty()) {
-            System.out.println("   No comments.");
+            builder.append("   No comments.");
         }
         else {
-            System.out.println("   " + comments.size() + " comment(s). Click here to view.");
+            builder.append("   " + comments.size() + " comment(s). Click here to view.");
         }
+         */
+        
+        return builder.toString();
+        
+        
     }
     
     /**
@@ -105,7 +152,7 @@ public class Post
      * @return      A relative time string for the given time
      */
     
-    private String timeString(long time)
+    protected String timeString(long time)
     {
         long current = System.currentTimeMillis();
         long pastMillis = current - time;      // time passed in milliseconds

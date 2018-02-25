@@ -10,4 +10,6 @@ comment2.text=\n\ Return\ the\ file\ name\ of\ the\ image\ in\ this\ post.\n\ \n
 comment3.params=
 comment3.target=java.lang.String\ getCaption()
 comment3.text=\n\ Return\ the\ caption\ of\ the\ image\ of\ this\ post.\n\ \n\ @return\ The\ image's\ caption.\n
-numComments=4
+comment4.params=
+comment4.target=void\ display()
+numComments=5

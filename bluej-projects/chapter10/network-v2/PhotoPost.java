@@ -46,4 +46,20 @@ public class PhotoPost extends Post
     {
         return caption;
     }
+    
+    public void display() {
+        System.out.println(getUsername());
+        System.out.println(getCaption());
+        System.out.println(filename);
+        System.out.print(getTime());
+        System.out.print(getLikes());
+        System.out.println(getComments());
+
+    }
+    
+    /*
+    public String toString() {
+        
+    }
+    */
 }
