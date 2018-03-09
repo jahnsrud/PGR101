@@ -6,7 +6,7 @@ import java.util.List;
  * @author David J. Barnes and Michael Kölling
  * @version 2016.02.29 (2)
  */
-public abstract class Animal
+public abstract class Animal implements Actor
 {
     // Whether the animal is alive or not.
     private boolean alive;
@@ -14,6 +14,9 @@ public abstract class Animal
     private Field field;
     // The animal's position in the field.
     private Location location;
+    
+    // Age
+    private int age;
     
     /**
      * Create a new animal at location in field.
@@ -26,6 +29,17 @@ public abstract class Animal
         alive = true;
         this.field = field;
         setLocation(location);
+        setAge(0);
+        
+    }
+    
+    public int getAge() {
+        return age;
+        
+    }
+    
+    public void setAge(int age) {
+        this.age = age;
     }
     
     /**
@@ -33,7 +47,7 @@ public abstract class Animal
      * whatever it wants/needs to do.
      * @param newAnimals A list to receive newly born animals.
      */
-    abstract public void act(List<Animal> newAnimals);
+    abstract public void act(List<Actor> newActors);
 
     /**
      * Check whether the animal is alive or not.
@@ -43,7 +57,24 @@ public abstract class Animal
     {
         return alive;
     }
+    
+    public boolean isActive() {
+        
+        return isAlive();
+        
+    }
+    
+     /**
+     * A rabbit can breed if it has reached the breeding age.
+     * @return true if the rabbit can breed, false otherwise.
+     */
+    protected boolean canBreed()
+    {
+        return getAge() >= getBreedingAge();
+    }
 
+    public abstract int getBreedingAge();
+    
     /**
      * Indicate that the animal is no longer alive.
      * It is removed from the field.

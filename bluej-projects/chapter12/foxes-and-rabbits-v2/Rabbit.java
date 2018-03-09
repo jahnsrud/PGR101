@@ -25,8 +25,6 @@ public class Rabbit extends Animal
     
     // Individual characteristics (instance fields).
     
-    // The rabbit's age.
-    private int age;
 
     /**
      * Create a new rabbit. A rabbit may be created with age
@@ -39,9 +37,9 @@ public class Rabbit extends Animal
     public Rabbit(boolean randomAge, Field field, Location location)
     {
         super(field, location);
-        age = 0;
+
         if(randomAge) {
-            age = rand.nextInt(MAX_AGE);
+            setAge(rand.nextInt(MAX_AGE));
         }
     }
     
@@ -50,11 +48,11 @@ public class Rabbit extends Animal
      * around. Sometimes it will breed or die of old age.
      * @param newRabbits A list to return newly born rabbits.
      */
-    public void act(List<Animal> newRabbits)
+    public void act(List<Actor> newActors)
     {
         incrementAge();
         if(isAlive()) {
-            giveBirth(newRabbits);            
+            giveBirth(newActors);            
             // Try to move into a free location.
             Location newLocation = getField().freeAdjacentLocation(getLocation());
             if(newLocation != null) {
@@ -73,8 +71,9 @@ public class Rabbit extends Animal
      */
     private void incrementAge()
     {
-        age++;
-        if(age > MAX_AGE) {
+        setAge(getAge()+1);
+
+        if(getAge() > MAX_AGE) {
             setDead();
         }
     }
@@ -84,7 +83,7 @@ public class Rabbit extends Animal
      * New births will be made into free adjacent locations.
      * @param newRabbits A list to return newly born rabbits.
      */
-    private void giveBirth(List<Animal> newRabbits)
+    private void giveBirth(List<Actor> newRabbits)
     {
         // New rabbits are born into adjacent locations.
         // Get a list of adjacent free locations.
@@ -112,12 +111,8 @@ public class Rabbit extends Animal
         return births;
     }
 
-    /**
-     * A rabbit can breed if it has reached the breeding age.
-     * @return true if the rabbit can breed, false otherwise.
-     */
-    private boolean canBreed()
-    {
-        return age >= BREEDING_AGE;
+    public int getBreedingAge() {
+        return BREEDING_AGE;
     }
+  
 }

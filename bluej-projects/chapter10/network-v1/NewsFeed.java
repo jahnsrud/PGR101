@@ -36,6 +36,23 @@ public class NewsFeed
     {
         messages.add(message);
     }
+    
+    
+    
+    
+    
+    public boolean endrePlassering(String regnr, String nyPlassering) {
+        
+        
+    }
+    
+    public boolean setInstrumentIUorden(String regnr) {
+        meter.funker = false;
+    }
+    
+    
+    
+    
 
     /**
      * Add a photo post to the news feed.
