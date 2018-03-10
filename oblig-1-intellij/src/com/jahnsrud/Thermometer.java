@@ -4,6 +4,7 @@ public class Thermometer extends Meter {
 
     private double minTemp;
     private double maxTemp;
+    private static final String unit = "Celsius";
 
     public Thermometer() {
         /**
@@ -20,10 +21,6 @@ public class Thermometer extends Meter {
         this.maxTemp = maxTemp;
     }
 
-    public Thermometer(String regNr, String locationCode, boolean isFunctional) {
-        super(regNr, locationCode, isFunctional);
-    }
-
     public double getMinTemp() {
         return minTemp;
     }
@@ -38,6 +35,10 @@ public class Thermometer extends Meter {
 
     public void setMaxTemp(double maxTemp) {
         this.maxTemp = maxTemp;
+    }
+
+    public String getUnit() {
+        return unit;
     }
 
     @Override

@@ -16,10 +16,6 @@ public class Clock extends Meter {
         this.smallestTimeInterval = smallestTimeInterval;
     }
 
-    public Clock(String regNr, String locationCode, boolean isFunctional) {
-        super(regNr, locationCode, isFunctional);
-    }
-
     public double getSmallestTimeInterval() {
         return smallestTimeInterval;
     }
