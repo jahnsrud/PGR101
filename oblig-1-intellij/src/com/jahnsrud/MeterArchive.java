@@ -16,7 +16,7 @@ public class MeterArchive {
 
     /**
      * Add a meter to our list
-     * @param a reference to a meter to add
+     * @param meter reference to a meter to add
      */
     public void addMeter(Meter meter) {
 
@@ -25,16 +25,16 @@ public class MeterArchive {
     }
 
     /**
-     * Get a meter using regNr
-     * @param regNr
+     * Get a meter using id
+     * @param id
      * @return a meter if found, null if not
      */
 
-    public Meter getMeter(String regNr) {
+    public Meter getMeter(String id) {
 
         for(Meter meter : meters) {
 
-            if (meter.getRegNr().equals(regNr)) {
+            if (meter.getId().equals(id)) {
 
                 return meter;
 
@@ -52,12 +52,12 @@ public class MeterArchive {
 
     /**
      * Delete
-     * @param regNr
+     * @param id
      * @return
      */
-    public boolean delete(String regNr) {
+    public boolean delete(String id) {
 
-        Meter meter = getMeter(regNr);
+        Meter meter = getMeter(id);
         if (meter == null) {
             return false;
         }
@@ -67,15 +67,23 @@ public class MeterArchive {
         return true;
     }
 
-    public boolean changeLocation(String regNr, String newLocation) {
+    public boolean changeLocation(String id, String newLocation) {
+
+        Meter meter = getMeter(id);
+
+        if (meter == null) {
+            return false;
+        }
+
+        meter.setLocationCode(newLocation);
 
         return true;
 
     }
 
-    public boolean setMeterNonFunctional(String regNr) {
+    public boolean setMeterNonFunctional(String id) {
 
-        Meter meter = getMeter(regNr);
+        Meter meter = getMeter(id);
 
         if (meter == null) {
             return false;
@@ -84,6 +92,27 @@ public class MeterArchive {
         meter.setFunctional(false);
 
         return true;
+    }
+
+    /**
+     * Prints all meters to our terminal
+     */
+
+    public void printAllMeters() {
+
+        System.out.println("\n*********\n");
+
+        System.out.println("Viser alle instrumenter");
+
+        System.out.println("\n---------");
+
+        for(Meter meter : meters) {
+            System.out.println(meter);
+            System.out.println("---------");
+        }
+
+
+
     }
 
 }

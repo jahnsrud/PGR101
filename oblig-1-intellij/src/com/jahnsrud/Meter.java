@@ -37,12 +37,12 @@ public abstract class Meter {
 
     }
 
-    public String getRegNr() {
+    public String getId() {
         return id;
     }
 
-    public void setRegNr(String regNr) {
-        this.id = regNr;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getLocationCode() {
