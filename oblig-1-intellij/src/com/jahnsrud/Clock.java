@@ -20,17 +20,19 @@ public class Clock extends Meter {
         super(regNr, locationCode, isFunctional);
     }
 
-    public String toString() {
-        return "";
-
-    }
-
     public double getSmallestTimeInterval() {
         return smallestTimeInterval;
     }
 
     public void setSmallestTimeInterval(double smallestTimeInterval) {
         this.smallestTimeInterval = smallestTimeInterval;
+    }
+
+    @Override
+    public String toString() {
+
+        return "Kommer snart";
+
     }
 
     /*

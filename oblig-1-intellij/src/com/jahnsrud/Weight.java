@@ -37,6 +37,13 @@ public class Weight extends Meter {
         this.maxWeight = maxWeight;
     }
 
+    @Override
+    public String toString() {
+
+        return "Kommer snart";
+
+    }
+
     /*
     @Override
     public boolean equals(Object o) {
