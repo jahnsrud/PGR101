@@ -21,7 +21,11 @@ public class MeterArchive {
 
     }
 
-    public void getMeter(String regNr) {
+    public Meter getMeter(String regNr) {
+
+        
+
+        return null;
 
     }
 
@@ -43,7 +47,7 @@ public class MeterArchive {
 
     public boolean setMeterNonFunctional(String regNr) {
 
-        
+
         return true;
     }
 
