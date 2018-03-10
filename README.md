@@ -1,2 +1,2 @@
-# PGR101
-Prosjekter fra PGR101 på Westerdals. Våren 2018.
+# PGR101 - Objektorientert programmering 2
+Prosjekter fra PGR101 på Westerdals/Høyskolen Kristiania. Våren 2018.
