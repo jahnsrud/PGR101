@@ -12,7 +12,6 @@ public class MeterArchive {
         meters = new ArrayList<>();
 
 
-
     }
 
     public void addMeter(Meter meter) {
@@ -23,7 +22,15 @@ public class MeterArchive {
 
     public Meter getMeter(String regNr) {
 
-        
+        for(Meter meter : meters) {
+
+            if (meter.getRegNr().equals(regNr)) {
+
+                return meter;
+
+            }
+
+        }
 
         return null;
 

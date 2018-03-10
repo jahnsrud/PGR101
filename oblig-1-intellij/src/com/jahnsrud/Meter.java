@@ -18,6 +18,30 @@ public class Meter {
 
     }
 
+    public String getRegNr() {
+        return regNr;
+    }
+
+    public void setRegNr(String regNr) {
+        this.regNr = regNr;
+    }
+
+    public String getLocationCode() {
+        return locationCode;
+    }
+
+    public void setLocationCode(String locationCode) {
+        this.locationCode = locationCode;
+    }
+
+    public boolean isFunctional() {
+        return isFunctional;
+    }
+
+    public void setFunctional(boolean functional) {
+        isFunctional = functional;
+    }
+
     @Override
     public String toString() {
         return "Meter{" +
