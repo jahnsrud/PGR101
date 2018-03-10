@@ -6,6 +6,16 @@ public abstract class Meter {
     private String locationCode;
     private boolean isFunctional;
 
+    public Meter() {
+
+        /**
+         * Todo: improve
+         */
+
+        this("DEFAULT", "ABC", true);
+
+    }
+
     public Meter(String regNr, String locationCode, boolean isFunctional) {
         this.regNr = regNr;
         this.locationCode = locationCode;

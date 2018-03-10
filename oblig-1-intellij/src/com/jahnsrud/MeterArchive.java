@@ -14,11 +14,21 @@ public class MeterArchive {
 
     }
 
+    /**
+     * Add a meter to our list
+     * @param a reference to a meter to add
+     */
     public void addMeter(Meter meter) {
 
         meters.add(meter);
 
     }
+
+    /**
+     * Get a meter using regNr
+     * @param regNr
+     * @return a meter if found, null if not
+     */
 
     public Meter getMeter(String regNr) {
 
@@ -40,8 +50,19 @@ public class MeterArchive {
         return meters;
     }
 
-    public boolean deleteMeter(String regNr) {
+    /**
+     * Delete
+     * @param regNr
+     * @return
+     */
+    public boolean delete(String regNr) {
 
+        Meter meter = getMeter(regNr);
+        if (meter == null) {
+            return false;
+        }
+
+        meters.remove(meter);
 
         return true;
     }
@@ -54,6 +75,13 @@ public class MeterArchive {
 
     public boolean setMeterNonFunctional(String regNr) {
 
+        Meter meter = getMeter(regNr);
+
+        if (meter == null) {
+            return false;
+        }
+
+        meter.setFunctional(false);
 
         return true;
     }

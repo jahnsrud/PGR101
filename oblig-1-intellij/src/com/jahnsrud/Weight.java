@@ -7,6 +7,14 @@ public class Weight extends Meter {
     private double minWeight;
     private double maxWeight;
 
+    public Weight() {
+        /**
+         * Todo: improve
+         */
+
+        this("TEST", "TEST", true, 0, 1000);
+    }
+
     public Weight(String regNr, String locationCode, boolean isFunctional, double minWeight, double maxWeight) {
         super(regNr, locationCode, isFunctional);
         this.minWeight = minWeight;

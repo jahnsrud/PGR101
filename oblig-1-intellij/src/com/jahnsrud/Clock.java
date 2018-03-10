@@ -4,6 +4,13 @@ public class Clock extends Meter {
 
     private double smallestTimeInterval; // annet navn
 
+    public Clock() {
+        /**
+         * Todo: improve
+         */
+        this("TEST", "TEST", true, 1.0);
+    }
+
     public Clock(String regNr, String locationCode, boolean isFunctional, double smallestTimeInterval) {
         super(regNr, locationCode, isFunctional);
         this.smallestTimeInterval = smallestTimeInterval;
