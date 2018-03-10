@@ -1,4 +1,4 @@
-# OBLIG-1
+# Arrbeidskrav 1
 PGR101 på Westerdals/Høyskolen Kristiania
 
 ## Hvordan teste?

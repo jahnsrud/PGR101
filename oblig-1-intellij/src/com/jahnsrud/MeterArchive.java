@@ -25,6 +25,10 @@ public class MeterArchive {
 
     }
 
+    public List getAllMeters() {
+        return meters;
+    }
+
     public boolean deleteMeter(String regNr) {
 
 
@@ -37,8 +41,9 @@ public class MeterArchive {
 
     }
 
-    public boolean setMeterNonFunctional() {
+    public boolean setMeterNonFunctional(String regNr) {
 
+        
         return true;
     }
 
