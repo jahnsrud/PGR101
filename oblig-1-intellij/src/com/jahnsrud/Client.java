@@ -23,8 +23,12 @@ public class Client {
 
         List<Meter>testList = meterArchive.getAllMeters();
 
+        System.out.println("Viser alle instrumenter \n");
+
         for(Meter meter : testList) {
+            System.out.println("---------\n");
             System.out.println(meter);
+            System.out.println("\n---------");
         }
 
 

@@ -1,8 +1,10 @@
 package com.jahnsrud;
 
+import java.util.Objects;
+
 public abstract class Meter {
 
-    private String regNr;
+    private String id;
     private String locationCode;
     private boolean isFunctional;
 
@@ -16,8 +18,8 @@ public abstract class Meter {
 
     }
 
-    public Meter(String regNr, String locationCode, boolean isFunctional) {
-        this.regNr = regNr;
+    public Meter(String id, String locationCode, boolean isFunctional) {
+        this.id = id;
         this.locationCode = locationCode;
         this.isFunctional = isFunctional;
     }
@@ -36,11 +38,11 @@ public abstract class Meter {
     }
 
     public String getRegNr() {
-        return regNr;
+        return id;
     }
 
     public void setRegNr(String regNr) {
-        this.regNr = regNr;
+        this.id = regNr;
     }
 
     public String getLocationCode() {
@@ -61,10 +63,27 @@ public abstract class Meter {
 
     @Override
     public String toString() {
-        return "regNr = '" + regNr + '\'' +
-                ", locationCode = '" + locationCode + '\'' +
-                ", isFunctional = " + isFunctional +
+        return "Registreringsnummer: '" + id + '\'' +
+                "Plasseringskode:  = '" + locationCode + '\'' +
+                ", Fungerer = " + isFunctional +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Meter meter = (Meter) o;
+        return isFunctional == meter.isFunctional &&
+                Objects.equals(id, meter.id) &&
+                Objects.equals(locationCode, meter.locationCode);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, locationCode, isFunctional);
     }
 
     /*
