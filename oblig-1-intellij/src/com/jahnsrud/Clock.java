@@ -31,7 +31,7 @@ public class Clock extends Meter {
     @Override
     public String toString() {
 
-        return "Kommer snart";
+        return "Minste tidsintervall: " + getSmallestTimeInterval() + "\n" + super.toString();
 
     }
 

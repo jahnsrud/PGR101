@@ -24,10 +24,6 @@ public class Thermometer extends Meter {
         super(regNr, locationCode, isFunctional);
     }
 
-    public String toString() {
-        return "";
-    }
-
     public double getMinTemp() {
         return minTemp;
     }
@@ -42,6 +38,11 @@ public class Thermometer extends Meter {
 
     public void setMaxTemp(double maxTemp) {
         this.maxTemp = maxTemp;
+    }
+
+    @Override
+    public String toString() {
+        return "Temperatur - minimum: " + getMinTemp() + "\n" + "Temperatur - maksimum: " + getMaxTemp() + "\n" + super.toString();
     }
 
     /*

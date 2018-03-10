@@ -40,7 +40,7 @@ public class Weight extends Meter {
     @Override
     public String toString() {
 
-        return "Kommer snart";
+        return "Vekt - minimum: " + getMinWeight() + "\n" + "Vekt - maksimum: " + getMaxWeight() + "\n" + super.toString();
 
     }
 
