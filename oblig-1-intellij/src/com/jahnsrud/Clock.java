@@ -25,6 +25,14 @@ public class Clock extends Meter {
 
     }
 
+    public double getSmallestTimeInterval() {
+        return smallestTimeInterval;
+    }
+
+    public void setSmallestTimeInterval(double smallestTimeInterval) {
+        this.smallestTimeInterval = smallestTimeInterval;
+    }
+
     /*
     @Override
     public boolean equals(Object o) {}
