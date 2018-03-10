@@ -12,19 +12,33 @@ public class Client {
 
     public void mainMethod() {
 
-        System.out.println("Hello, World. Fra Client.");
+        System.out.println("Hello, World!");
 
         MeterArchive meterArchive = new MeterArchive();
 
-        Meter testClock = new Clock("ABC000", "A123", true, 0.1);
+        // Legg til placeholder-innhold
+        addPlaceholderContent(meterArchive);
 
-        meterArchive.addMeter(testClock);
+
 
         List<Meter>testList = meterArchive.getAllMeters();
 
         for(Meter meter : testList) {
             System.out.println(meter);
         }
+
+    }
+
+    public void addPlaceholderContent(MeterArchive meterArchive) {
+
+        Clock testClock = new Clock("ABC000", "A123", true, 0.1);
+        meterArchive.addMeter(testClock);
+
+        Thermometer testThermometer = new Thermometer("CBA111", "123A", true, 0, 100);
+        meterArchive.addMeter(testThermometer);
+
+        Weight testWeight = new Weight("ÆØÅ222", "000L", true, 0, 1000);
+        meterArchive.addMeter(testWeight);
 
     }
 

@@ -1,5 +1,7 @@
 package com.jahnsrud;
 
+import java.util.Objects;
+
 public class Weight extends Meter {
 
     private double minWeight;
@@ -15,5 +17,14 @@ public class Weight extends Meter {
     public Weight(String regNr, String locationCode, boolean isFunctional) {
         super(regNr, locationCode, isFunctional);
     }
+
+    /*
+    @Override
+    public boolean equals(Object o) {
+
+
+    }
+    */
+
 
 }

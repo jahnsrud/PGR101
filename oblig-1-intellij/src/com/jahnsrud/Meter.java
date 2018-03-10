@@ -1,6 +1,6 @@
 package com.jahnsrud;
 
-public class Meter {
+public abstract class Meter {
 
     private String regNr;
     private String locationCode;

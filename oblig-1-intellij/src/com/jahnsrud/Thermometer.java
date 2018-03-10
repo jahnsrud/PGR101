@@ -19,4 +19,10 @@ public class Thermometer extends Meter {
         return "";
     }
 
+/*
+    @Override
+    public boolean equals(Object o) {}
+
+*/
+
 }
