@@ -22,7 +22,14 @@ public abstract class Meter {
         this.isFunctional = isFunctional;
     }
 
-    private String createPlacementCode(int room, int shelf) {
+    /**
+     * A helping hand for creating location codes
+     * @param room
+     * @param shelf
+     * @return
+     */
+
+    public String createLocationCode(int room, int shelf) {
 
         return "R" + room + "H" + shelf;
 
@@ -54,10 +61,9 @@ public abstract class Meter {
 
     @Override
     public String toString() {
-        return "Meter{" +
-                "regNr='" + regNr + '\'' +
-                ", locationCode='" + locationCode + '\'' +
-                ", isFunctional=" + isFunctional +
+        return "regNr = '" + regNr + '\'' +
+                ", locationCode = '" + locationCode + '\'' +
+                ", isFunctional = " + isFunctional +
                 '}';
     }
 
