@@ -15,8 +15,8 @@ public class Weight extends Meter {
         this("TEST", "TEST", true, 0, 1000);
     }
 
-    public Weight(String regNr, String locationCode, boolean isFunctional, double minWeight, double maxWeight) {
-        super(regNr, locationCode, isFunctional);
+    public Weight(String id, String locationCode, boolean isFunctional, double minWeight, double maxWeight) {
+        super(id, locationCode, isFunctional);
         this.minWeight = minWeight;
         this.maxWeight = maxWeight;
     }
@@ -40,7 +40,7 @@ public class Weight extends Meter {
     @Override
     public String toString() {
 
-        return "Vekt - minimum: " + getMinWeight() + "\n" + "Vekt - maksimum: " + getMaxWeight() + "\n" + super.toString();
+        return "- Vekt" + "\n" + "Vekt - minimum: " + getMinWeight() + "\n" + "Vekt - maksimum: " + getMaxWeight() + "\n" + super.toString();
 
     }
 

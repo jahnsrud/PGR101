@@ -20,7 +20,7 @@ public abstract class Meter {
 
     public Meter(String id, String locationCode, boolean isFunctional) {
         this.id = id;
-        this.locationCode = locationCode;
+        setLocationCode(locationCode);
         this.isFunctional = isFunctional;
     }
 
@@ -49,8 +49,8 @@ public abstract class Meter {
         return locationCode;
     }
 
-    public void setLocationCode(String locationCode) {
-        this.locationCode = locationCode;
+    public final void setLocationCode(String locationCode) {
+        this.locationCode = locationCode.trim().toUpperCase();
     }
 
     public boolean isFunctional() {
@@ -63,10 +63,9 @@ public abstract class Meter {
 
     @Override
     public String toString() {
-        return "Registreringsnummer: '" + id + '\'' +
-                "Plasseringskode:  = '" + locationCode + '\'' +
-                ", Fungerer = " + isFunctional +
-                '}';
+        return "\n" + "Registreringsnummer: " + id + "\n" +
+                "Plasseringskode: " + locationCode + "\n" +
+                "Fungerer instrumentet? " + isFunctional;
     }
 
     @Override
@@ -86,7 +85,5 @@ public abstract class Meter {
         return Objects.hash(id, locationCode, isFunctional);
     }
 
-    /*
-    Equals.
-     */
+
 }

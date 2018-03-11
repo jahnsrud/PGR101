@@ -2,7 +2,7 @@ package com.jahnsrud;
 
 public class Clock extends Meter {
 
-    private double smallestTimeInterval; // annet navn
+    private double minTimeInterval; // annet navn
 
     public Clock() {
         /**
@@ -11,23 +11,23 @@ public class Clock extends Meter {
         this("TEST", "TEST", true, 1.0);
     }
 
-    public Clock(String regNr, String locationCode, boolean isFunctional, double smallestTimeInterval) {
-        super(regNr, locationCode, isFunctional);
-        this.smallestTimeInterval = smallestTimeInterval;
+    public Clock(String id, String locationCode, boolean isFunctional, double minTimeInterval) {
+        super(id, locationCode, isFunctional);
+        this.minTimeInterval = minTimeInterval;
     }
 
-    public double getSmallestTimeInterval() {
-        return smallestTimeInterval;
+    public double getMinTimeInterval() {
+        return minTimeInterval;
     }
 
-    public void setSmallestTimeInterval(double smallestTimeInterval) {
-        this.smallestTimeInterval = smallestTimeInterval;
+    public void setMinTimeInterval(double minTimeInterval) {
+        this.minTimeInterval = minTimeInterval;
     }
 
     @Override
     public String toString() {
 
-        return "Minste tidsintervall: " + getSmallestTimeInterval() + "\n" + super.toString();
+        return "- Klokke" + "\n" + "Minste tidsintervall: " + getMinTimeInterval() + "\n" + super.toString();
 
     }
 

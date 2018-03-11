@@ -15,8 +15,8 @@ public class Thermometer extends Meter {
 
     }
 
-    public Thermometer(String regNr, String locationCode, boolean isFunctional, double minTemp, double maxTemp) {
-        super(regNr, locationCode, isFunctional);
+    public Thermometer(String id, String locationCode, boolean isFunctional, double minTemp, double maxTemp) {
+        super(id, locationCode, isFunctional);
         this.minTemp = minTemp;
         this.maxTemp = maxTemp;
     }
@@ -43,7 +43,7 @@ public class Thermometer extends Meter {
 
     @Override
     public String toString() {
-        return "Temperatur - minimum: " + getMinTemp() + "\n" + "Temperatur - maksimum: " + getMaxTemp() + "\n" + super.toString();
+        return "- Termometer" + "\n" + "Temperatur - minimum: " + getMinTemp() + "\n" + "Temperatur - maksimum: " + getMaxTemp() + "\n" + super.toString();
     }
 
     /*
