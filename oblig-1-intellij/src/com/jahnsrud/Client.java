@@ -68,7 +68,7 @@ public class Client {
 
         String idToChangeLocation = "WGT000";
         System.out.println("Endrer plassering på instrument med id: " + idToChangeLocation);
-        meterArchive.changeLocation(idToChangeLocation, "WGT100");
+        meterArchive.changeMeterLocation(idToChangeLocation, "WGT100");
 
         System.out.println("*********");
 

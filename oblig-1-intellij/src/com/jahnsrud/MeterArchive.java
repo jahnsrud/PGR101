@@ -92,7 +92,7 @@ public class MeterArchive {
      * @return true if update was successful
      */
 
-    public boolean changeLocation(String id, String newLocation) {
+    public boolean changeMeterLocation(String id, String newLocation) {
 
         Meter meter = getMeter(id);
 
