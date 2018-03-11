@@ -2,13 +2,13 @@ package com.jahnsrud;
 
 public class Clock extends Meter {
 
-    private double minTimeInterval; // annet navn
+    private double minTimeInterval;
+    private static final String unit = "Sekunder";
 
     public Clock() {
-        /**
-         * Todo: improve
-         */
-        this("TEST", "TEST", true, 1.0);
+        super();
+        setMinTimeInterval(1.0);
+
     }
 
     public Clock(String id, String locationCode, boolean isFunctional, double minTimeInterval) {

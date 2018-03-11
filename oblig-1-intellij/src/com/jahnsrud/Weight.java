@@ -6,13 +6,13 @@ public class Weight extends Meter {
 
     private double minWeight;
     private double maxWeight;
+    private static final String unit = "Gram";
 
     public Weight() {
-        /**
-         * Todo: improve
-         */
+        super();
+        setMinWeight(0);
+        setMaxWeight(1000);
 
-        this("TEST", "TEST", true, 0, 1000);
     }
 
     public Weight(String id, String locationCode, boolean isFunctional, double minWeight, double maxWeight) {

@@ -7,11 +7,9 @@ public class Thermometer extends Meter {
     private static final String unit = "Celsius";
 
     public Thermometer() {
-        /**
-         * Todo: improve
-         */
-
-        this("TEST", "TEST", true, 0, 100);
+        super();
+        setMinTemp(0);
+        setMaxTemp(100);
 
     }
 

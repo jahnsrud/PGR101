@@ -82,7 +82,6 @@ public class Client {
         System.out.println("Takk for meg (╯°□°）╯︵ ");
 
 
-
     }
 
     public void addPlaceholderContent(MeterArchive meterArchive) {
@@ -94,6 +93,9 @@ public class Client {
         meterArchive.addMeter(myThermometer);
 
         Weight myWeight = new Weight("WGT000", "000L", true, 0, 1000);
+        meterArchive.addMeter(myWeight);
+
+        // Forsøk på å legge til duplikat:
         meterArchive.addMeter(myWeight);
 
     }
