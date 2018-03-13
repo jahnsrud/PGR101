@@ -1,13 +1,74 @@
-package com.jahnsrud;
+package library;
 
-public class Client {
+import javafx.event.ActionEvent;
+import javafx.scene.control.*;
+import javafx.fxml.FXML;
 
-    public Client() {
+public class Controller {
 
-        mainMethod();
+    public Label helloLabel;
+    public Button addButton;
+    public Label metersMetadataLabel;
+
+    private MeterArchive archive;
+
+
+    public Controller() {
+
+        archive = new MeterArchive();
 
     }
 
+    @FXML
+    public void initialize() {
+        helloLabel.setText("Hello, World!");
+
+        updateMetersMetadataLabel();
+
+    }
+
+    public void addMeter(ActionEvent actionEvent) {
+
+        TextInputDialog inputDialog = new TextInputDialog();
+        inputDialog.setTitle("Add new Meter");
+        inputDialog.setContentText("Enter id:");
+
+        String location = inputDialog.showAndWait().toString();
+
+        inputDialog.getEditor().clear();
+        inputDialog.setContentText("Enter location code");
+        String locationCode = inputDialog.showAndWait().toString();
+        inputDialog.getEditor().clear();
+
+        Clock myClock = new Clock(location, locationCode, true, 0.1);
+        archive.addMeter(myClock);
+
+        archive.printAllMeters();
+
+        updateMetersMetadataLabel();
+
+        showAlert(myClock.toString());
+
+    }
+
+    public void showAlert(String alertMessage) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, alertMessage, ButtonType.CLOSE);
+        alert.showAndWait();
+
+
+    }
+
+    public void updateMetersMetadataLabel() {
+        metersMetadataLabel.setText("Total number of meters: " + archive.getNumberOfMeters());
+    }
+
+    /**
+     * BACKUP AV GAMMEL KODe
+     *
+     */
+
+    /*
     public void mainMethod() {
 
         System.out.println("Arbeidskrav 1");
@@ -99,5 +160,7 @@ public class Client {
         meterArchive.addMeter(myWeight);
 
     }
+     */
+
 
 }

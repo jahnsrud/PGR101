@@ -1,4 +1,4 @@
-package com.jahnsrud;
+package library;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -64,6 +64,14 @@ public class MeterArchive {
 
     private List getAllMeters() {
         return meters;
+    }
+
+    /**
+     * Get the total meter count in our array
+     * @return number of meters added
+     */
+    public int getNumberOfMeters() {
+        return meters.size();
     }
 
     /**

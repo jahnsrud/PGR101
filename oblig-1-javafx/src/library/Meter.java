@@ -1,4 +1,4 @@
-package com.jahnsrud;
+package library;
 
 import java.util.Objects;
 

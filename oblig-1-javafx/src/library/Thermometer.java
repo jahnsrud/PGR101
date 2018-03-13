@@ -1,4 +1,4 @@
-package com.jahnsrud;
+package library;
 
 public class Thermometer extends Meter {
 
