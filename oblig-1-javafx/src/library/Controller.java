@@ -1,14 +1,20 @@
 package library;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.Optional;
 
 public class Controller {
 
     public Label helloLabel;
     public Button addButton;
     public Label metersMetadataLabel;
+    public TableView<Meter> tableView;
 
     private MeterArchive archive;
 
@@ -19,15 +25,64 @@ public class Controller {
 
     }
 
+    /**
+     * First things first, configure our UI
+     */
+
     @FXML
     public void initialize() {
         helloLabel.setText("Hello, World!");
+
+        // Add columns for our data
+        TableColumn<Meter, String> idColumn = new TableColumn<>("ID");
+        idColumn.setMinWidth(80);
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+        TableColumn<Meter, String> locationCodeColumn = new TableColumn<>("Location Code");
+        locationCodeColumn.setMinWidth(120);
+        locationCodeColumn.setCellValueFactory(new PropertyValueFactory<>("locationCode"));
+
+
+        tableView.setItems(getProducts());
+        tableView.getColumns().addAll(idColumn, locationCodeColumn);
 
         updateMetersMetadataLabel();
 
     }
 
+    public ObservableList<Meter> getProducts() {
+        ObservableList<Meter> meters = FXCollections.observableArrayList();
+
+        Thermometer myThermometer = new Thermometer("CBA321", "123A", true, 0, 100);
+
+        meters.add(myThermometer);
+
+        return meters;
+
+    }
+
     public void addMeter(ActionEvent actionEvent) {
+
+        Meter meterToAdd;
+
+        ButtonType clockButtonType = new ButtonType("Klokke", ButtonBar.ButtonData.OK_DONE);
+        ButtonType thermometerButtonType = new ButtonType("Termometer", ButtonBar.ButtonData.OK_DONE);
+        ButtonType weightButtonType = new ButtonType("Vekt", ButtonBar.ButtonData.OK_DONE);
+
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Velg type instrument", clockButtonType, thermometerButtonType,
+                weightButtonType, ButtonType.CANCEL);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == clockButtonType) {
+            System.out.println("Klokke");
+        } else if (result.isPresent() && result.get() == thermometerButtonType) {
+            System.out.println("Termometer");
+        } else if (result.isPresent() && result.get() == weightButtonType) {
+            System.out.println("Vekt");
+        }
+
 
         TextInputDialog inputDialog = new TextInputDialog();
         inputDialog.setTitle("Add new Meter");
@@ -40,14 +95,14 @@ public class Controller {
         String locationCode = inputDialog.showAndWait().toString();
         inputDialog.getEditor().clear();
 
-        Clock myClock = new Clock(location, locationCode, true, 0.1);
-        archive.addMeter(myClock);
+        meterToAdd = new Clock(location, locationCode, true, 0.1);
+        archive.addMeter(meterToAdd);
 
         archive.printAllMeters();
 
         updateMetersMetadataLabel();
 
-        showAlert(myClock.toString());
+        showAlert(meterToAdd.toString());
 
     }
 
