@@ -62,7 +62,7 @@ public class MeterArchive {
      * @return the List with all meters
      */
 
-    private List getAllMeters() {
+    public List getAllMeters() {
         return meters;
     }
 

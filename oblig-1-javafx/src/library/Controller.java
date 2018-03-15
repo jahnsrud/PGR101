@@ -7,7 +7,10 @@ import javafx.scene.control.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Controller {
 
@@ -42,20 +45,42 @@ public class Controller {
         locationCodeColumn.setMinWidth(120);
         locationCodeColumn.setCellValueFactory(new PropertyValueFactory<>("locationCode"));
 
+        TableColumn<Meter, Boolean> functionalColumn = new TableColumn<>("Functional?");
+        functionalColumn.setMinWidth(60);
+        functionalColumn.setCellValueFactory(new PropertyValueFactory<Meter, Boolean>("isFunctional"));
+
+        tableView.getColumns().addAll(idColumn, locationCodeColumn, functionalColumn);
+
+        refresh();
+
+    }
+
+    /**
+     * Todo: Helper method for creating columns
+     */
+
+    // private void createColumn()
+
+    private void refresh() {
 
         tableView.setItems(getProducts());
-        tableView.getColumns().addAll(idColumn, locationCodeColumn);
-
+        tableView.refresh();
         updateMetersMetadataLabel();
+
 
     }
 
     public ObservableList<Meter> getProducts() {
         ObservableList<Meter> meters = FXCollections.observableArrayList();
 
-        Thermometer myThermometer = new Thermometer("CBA321", "123A", true, 0, 100);
+        List<Meter> metersToAdd = archive.getAllMeters();
 
-        meters.add(myThermometer);
+        for(Meter meter : metersToAdd) {
+
+            meters.add(meter);
+            System.out.println("Found Meter: " + meter);
+
+        }
 
         return meters;
 
@@ -65,42 +90,84 @@ public class Controller {
 
         Meter meterToAdd;
 
-        ButtonType clockButtonType = new ButtonType("Klokke", ButtonBar.ButtonData.OK_DONE);
-        ButtonType thermometerButtonType = new ButtonType("Termometer", ButtonBar.ButtonData.OK_DONE);
-        ButtonType weightButtonType = new ButtonType("Vekt", ButtonBar.ButtonData.OK_DONE);
+        ButtonType clockButtonType = new ButtonType("Clock", ButtonBar.ButtonData.OK_DONE);
+        ButtonType thermometerButtonType = new ButtonType("Thermometer", ButtonBar.ButtonData.OK_DONE);
+        ButtonType weightButtonType = new ButtonType("Weight", ButtonBar.ButtonData.OK_DONE);
 
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Velg type instrument", clockButtonType, thermometerButtonType,
-                weightButtonType, ButtonType.CANCEL);
+        Alert alert = new Alert(Alert.AlertType.NONE, "Select Instrument Type", ButtonType.CANCEL, clockButtonType, thermometerButtonType,
+                weightButtonType);
+
+        alert.setTitle("Add Instrument");
+        alert.setHeaderText("Add Instrument");
 
         Optional<ButtonType> result = alert.showAndWait();
 
+        if (result.isPresent() && result.get() == ButtonType.CANCEL) {
+            return;
+        }
+
         if (result.isPresent() && result.get() == clockButtonType) {
             System.out.println("Klokke");
+
+            String id = "id";
+            String locationCode = "locationCode";
+            boolean isFunctional = true;
+            double minTimeInterval = 0.1;
+
+            Clock clock = new Clock(id,locationCode, isFunctional, minTimeInterval);
+
+
         } else if (result.isPresent() && result.get() == thermometerButtonType) {
             System.out.println("Termometer");
+
+
+
+
         } else if (result.isPresent() && result.get() == weightButtonType) {
             System.out.println("Vekt");
+
+
+
+
         }
 
 
         TextInputDialog inputDialog = new TextInputDialog();
+        inputDialog.setGraphic(null);
+        inputDialog.setHeaderText("Add new Meter");
+
         inputDialog.setTitle("Add new Meter");
         inputDialog.setContentText("Enter id:");
 
         String location = inputDialog.showAndWait().toString();
 
         inputDialog.getEditor().clear();
+
         inputDialog.setContentText("Enter location code");
         String locationCode = inputDialog.showAndWait().toString();
         inputDialog.getEditor().clear();
 
-        meterToAdd = new Clock(location, locationCode, true, 0.1);
+        inputDialog.setContentText("Is functional? (y/n)");
+        String isFunctioningString = inputDialog.showAndWait().toString();
+
+        boolean isFunctional;
+
+        if (isFunctioningString.equalsIgnoreCase("y")) {
+            isFunctional = true;
+        } else {
+            isFunctional = false;
+        }
+
+        inputDialog.getEditor().clear();
+
+        meterToAdd = new Clock(location, locationCode, isFunctional, 0.1);
         archive.addMeter(meterToAdd);
 
         archive.printAllMeters();
 
         updateMetersMetadataLabel();
+        refresh();
 
         showAlert(meterToAdd.toString());
 
