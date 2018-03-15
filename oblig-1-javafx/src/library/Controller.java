@@ -34,7 +34,7 @@ public class Controller {
 
     @FXML
     public void initialize() {
-        helloLabel.setText("Hello, World!");
+        helloLabel.setText("Library");
 
         // Add columns for our data
         TableColumn<Meter, String> idColumn = new TableColumn<>("ID");
@@ -47,7 +47,7 @@ public class Controller {
 
         TableColumn<Meter, Boolean> functionalColumn = new TableColumn<>("Functional?");
         functionalColumn.setMinWidth(60);
-        functionalColumn.setCellValueFactory(new PropertyValueFactory<Meter, Boolean>("isFunctional"));
+        functionalColumn.setCellValueFactory(new PropertyValueFactory<>("isFunctional"));
 
         tableView.getColumns().addAll(idColumn, locationCodeColumn, functionalColumn);
 
@@ -107,31 +107,26 @@ public class Controller {
             return;
         }
 
+        boolean isClock = false;
+        boolean isThermometer = false;
+        boolean isWeight = false;
+
+        // Get Meter type
+
         if (result.isPresent() && result.get() == clockButtonType) {
             System.out.println("Klokke");
-
-            String id = "id";
-            String locationCode = "locationCode";
-            boolean isFunctional = true;
-            double minTimeInterval = 0.1;
-
-            Clock clock = new Clock(id,locationCode, isFunctional, minTimeInterval);
-
+            isClock = true;
 
         } else if (result.isPresent() && result.get() == thermometerButtonType) {
             System.out.println("Termometer");
-
-
+            isThermometer = true;
 
 
         } else if (result.isPresent() && result.get() == weightButtonType) {
             System.out.println("Vekt");
-
-
-
+            isWeight = true;
 
         }
-
 
         TextInputDialog inputDialog = new TextInputDialog();
         inputDialog.setGraphic(null);
@@ -140,7 +135,7 @@ public class Controller {
         inputDialog.setTitle("Add new Meter");
         inputDialog.setContentText("Enter id:");
 
-        String location = inputDialog.showAndWait().toString();
+        String id = inputDialog.showAndWait().toString();
 
         inputDialog.getEditor().clear();
 
@@ -161,7 +156,17 @@ public class Controller {
 
         inputDialog.getEditor().clear();
 
-        meterToAdd = new Clock(location, locationCode, isFunctional, 0.1);
+        if (isClock) {
+            meterToAdd = new Clock(id, locationCode, isFunctional, 0.1);
+        } else if (isThermometer) {
+            meterToAdd = new Thermometer(id, locationCode, isFunctional, 0.0, 100.0);
+        } else if (isWeight) {
+            meterToAdd = new Weight(id, locationCode, isFunctional, 0, 1000);
+        } else {
+            System.out.println("Unknown Meter type. Returning...");
+            return;
+        }
+
         archive.addMeter(meterToAdd);
 
         archive.printAllMeters();
@@ -169,13 +174,16 @@ public class Controller {
         updateMetersMetadataLabel();
         refresh();
 
-        showAlert(meterToAdd.toString());
+        showAlert("Added meter", meterToAdd.toString());
 
     }
 
-    public void showAlert(String alertMessage) {
+    public void showAlert(String alertTitle, String alertMessage) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION, alertMessage, ButtonType.CLOSE);
+        alert.setHeaderText(alertTitle);
+        alert.setTitle(alertTitle);
+        alert.setGraphic(null);
         alert.showAndWait();
 
 
