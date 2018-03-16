@@ -1,5 +1,6 @@
 package library;
 
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,9 +46,29 @@ public class Controller {
         locationCodeColumn.setMinWidth(120);
         locationCodeColumn.setCellValueFactory(new PropertyValueFactory<>("locationCode"));
 
-        TableColumn<Meter, Boolean> functionalColumn = new TableColumn<>("Functional?");
+        TableColumn<Meter, String> functionalColumn = new TableColumn<>("Functional?");
         functionalColumn.setMinWidth(60);
-        functionalColumn.setCellValueFactory(new PropertyValueFactory<>("isFunctional"));
+        // functionalColumn.setCellValueFactory(new PropertyValueFactory<>("isFunctional"));
+
+        functionalColumn.setCellValueFactory(cellData -> {
+
+            // TODO: Fix!
+
+            boolean isFunctional = cellData.getValue().isFunctional();
+            String functionalString;
+
+            if (isFunctional == true)
+            {
+                functionalString = "Yes";
+            }
+            else
+            {
+                functionalString = "No";
+            }
+
+            return new ReadOnlyStringWrapper(functionalString);
+
+        });
 
         tableView.getColumns().addAll(idColumn, locationCodeColumn, functionalColumn);
 
@@ -78,7 +99,7 @@ public class Controller {
         for(Meter meter : metersToAdd) {
 
             meters.add(meter);
-            System.out.println("Found Meter: " + meter);
+            // System.out.println("Found Meter: " + meter);
 
         }
 
@@ -93,7 +114,6 @@ public class Controller {
         ButtonType clockButtonType = new ButtonType("Clock", ButtonBar.ButtonData.OK_DONE);
         ButtonType thermometerButtonType = new ButtonType("Thermometer", ButtonBar.ButtonData.OK_DONE);
         ButtonType weightButtonType = new ButtonType("Weight", ButtonBar.ButtonData.OK_DONE);
-
 
         Alert alert = new Alert(Alert.AlertType.NONE, "Select Instrument Type", ButtonType.CANCEL, clockButtonType, thermometerButtonType,
                 weightButtonType);
@@ -135,20 +155,33 @@ public class Controller {
         inputDialog.setTitle("Add new Meter");
         inputDialog.setContentText("Enter id:");
 
-        String id = inputDialog.showAndWait().toString();
+        String id = inputDialog.showAndWait().get();
 
         inputDialog.getEditor().clear();
 
         inputDialog.setContentText("Enter location code");
-        String locationCode = inputDialog.showAndWait().toString();
+        String locationCode = inputDialog.showAndWait().get();
         inputDialog.getEditor().clear();
 
-        inputDialog.setContentText("Is functional? (y/n)");
-        String isFunctioningString = inputDialog.showAndWait().toString();
+        // ChoiceDialog
+        // Detect if instrument is functional or not
+
+        List<String> choices = new ArrayList<>();
+        choices.add("Yes");
+        choices.add("No");
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Yes", choices);
+        dialog.setTitle("Add new Meter");
+        dialog.setGraphic(null);
+        dialog.setHeaderText("Meter Status");
+        dialog.setContentText("Is the meter functional?");
+
+        String isFunctioningString = dialog.showAndWait().get();
+        System.out.println("HEEEY" + isFunctioningString);
 
         boolean isFunctional;
 
-        if (isFunctioningString.equalsIgnoreCase("y")) {
+        if (isFunctioningString.equalsIgnoreCase("Yes")) {
             isFunctional = true;
         } else {
             isFunctional = false;
