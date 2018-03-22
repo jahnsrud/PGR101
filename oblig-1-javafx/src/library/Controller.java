@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
@@ -35,9 +36,14 @@ public class Controller {
 
     @FXML
     public void initialize() {
+
         helloLabel.setText("Library");
 
         // Add columns for our data
+        TableColumn<Meter, String> typeColumn = new TableColumn<>("Type");
+        // typeColumn.setMinWidth(80);
+
+
         TableColumn<Meter, String> idColumn = new TableColumn<>("ID");
         idColumn.setMinWidth(80);
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -49,6 +55,11 @@ public class Controller {
         TableColumn<Meter, String> functionalColumn = new TableColumn<>("Functional?");
         functionalColumn.setMinWidth(60);
         // functionalColumn.setCellValueFactory(new PropertyValueFactory<>("isFunctional"));
+
+        /**
+         * TODO: Checkbox
+         */
+        // functionalColumn.setCellFactory(tc -> new CheckBoxTableCell<>());
 
         functionalColumn.setCellValueFactory(cellData -> {
 
@@ -70,7 +81,7 @@ public class Controller {
 
         });
 
-        tableView.getColumns().addAll(idColumn, locationCodeColumn, functionalColumn);
+        tableView.getColumns().addAll(typeColumn, idColumn, locationCodeColumn, functionalColumn);
 
         refresh();
 
@@ -177,7 +188,6 @@ public class Controller {
         dialog.setContentText("Is the meter functional?");
 
         String isFunctioningString = dialog.showAndWait().get();
-        System.out.println("HEEEY" + isFunctioningString);
 
         boolean isFunctional;
 
@@ -191,10 +201,19 @@ public class Controller {
 
         if (isClock) {
             meterToAdd = new Clock(id, locationCode, isFunctional, 0.1);
+
+
+
         } else if (isThermometer) {
             meterToAdd = new Thermometer(id, locationCode, isFunctional, 0.0, 100.0);
+
+
+
         } else if (isWeight) {
             meterToAdd = new Weight(id, locationCode, isFunctional, 0, 1000);
+
+
+
         } else {
             System.out.println("Unknown Meter type. Returning...");
             return;
@@ -207,7 +226,7 @@ public class Controller {
         updateMetersMetadataLabel();
         refresh();
 
-        showAlert("Added meter", meterToAdd.toString());
+        // showAlert("Added meter", meterToAdd.toString());
 
     }
 

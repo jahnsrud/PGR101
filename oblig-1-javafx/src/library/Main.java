@@ -14,6 +14,7 @@ public class Main extends Application {
         primaryStage.setTitle("Library");
         primaryStage.setScene(new Scene(root, 700, 600));
         primaryStage.show();
+
     }
 
 
