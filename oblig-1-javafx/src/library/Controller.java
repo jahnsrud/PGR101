@@ -4,25 +4,28 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Controller {
 
-    public Label helloLabel;
-    public Button addButton;
-    public Label metersMetadataLabel;
     public TableView<Meter> tableView;
+    public VBox layout;
+    public Button addButton;
+    public Label helloLabel;
+    public Label metersMetadataLabel;
 
     private MeterArchive archive;
-
 
     public Controller() {
 
@@ -37,7 +40,48 @@ public class Controller {
     @FXML
     public void initialize() {
 
-        helloLabel.setText("Library");
+        layout.setSpacing(10);
+        layout.setPadding(new Insets(0, 0, 0, 0));
+
+        helloLabel = new Label("Library");
+        tableView = new TableView<>();
+
+        // tableView = new TableView<>();
+        addButton = new Button("Add Meter");
+        addButton.setOnAction(e -> {
+            addMeter();
+        });
+
+        metersMetadataLabel = new Label();
+
+        // layout = new VBox(10);
+
+        layout.getChildren().addAll(tableView, addButton, helloLabel, metersMetadataLabel);
+
+
+
+        /*
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(0, 0, 0, 0));
+        layout.getChildren().addAll(menuBar, tableView, hBox, testButton);
+
+
+        Scene scene = new Scene(layout);
+        scene.getStylesheets().add("sample/Style.css");
+
+
+
+        window.setScene(scene);
+        window.show();
+        */
+
+        configureTableView();
+
+
+
+    }
+
+    private void configureTableView() {
 
         // Add columns for our data
         TableColumn<Meter, String> typeColumn = new TableColumn<>("Type");
@@ -84,7 +128,6 @@ public class Controller {
         tableView.getColumns().addAll(typeColumn, idColumn, locationCodeColumn, functionalColumn);
 
         refresh();
-
     }
 
     /**
@@ -118,7 +161,7 @@ public class Controller {
 
     }
 
-    public void addMeter(ActionEvent actionEvent) {
+    public void addMeter() {
 
         Meter meterToAdd;
 
