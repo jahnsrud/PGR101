@@ -1,7 +1,6 @@
 package library;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,7 +10,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
         Parent root = FXMLLoader.load(getClass().getResource("controller.fxml"));
         primaryStage.setTitle("Library");
         primaryStage.setScene(new Scene(root, 700, 600));

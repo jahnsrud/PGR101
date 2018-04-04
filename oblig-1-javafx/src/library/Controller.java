@@ -3,7 +3,6 @@ package library;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -22,7 +21,6 @@ public class Controller {
     public TableView<Meter> tableView;
     public VBox layout;
     public Button addButton;
-    public Label helloLabel;
     public Label metersMetadataLabel;
 
     private MeterArchive archive;
@@ -41,7 +39,6 @@ public class Controller {
     public void initialize() {
 
         tableView = new TableView<>();
-        helloLabel = new Label("Library");
 
         addButton = new Button("Add Meter");
         addButton.setOnAction(e -> {
@@ -53,11 +50,27 @@ public class Controller {
         // Setup TableView
         configureTableView();
 
+        // Menu + Items
+        Menu fileMenu = new Menu("File");
+
+        // Menu Items
+        MenuItem newFile = new MenuItem("Add Meter...");
+        newFile.setOnAction(e -> {
+            addMeter();
+        });
+
+
+        fileMenu.getItems().add(newFile);
+
+        MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().addAll(fileMenu);
+        menuBar.useSystemMenuBarProperty().set(true);
+
         // Configure our layout
         layout.setSpacing(10);
         layout.setPadding(new Insets(0, 0, 0, 0));
 
-        layout.getChildren().addAll(tableView, addButton, helloLabel, metersMetadataLabel);
+        layout.getChildren().addAll(tableView, addButton, metersMetadataLabel, menuBar);
 
 
 
@@ -144,6 +157,14 @@ public class Controller {
     }
 
     public void addMeter() {
+
+        // Ny løsning som kommer snart
+        // boolean test = AddMeterController.showAddMeter();
+
+
+
+        // Fungerende kode
+
 
         Meter meterToAdd;
 
@@ -253,6 +274,8 @@ public class Controller {
 
         // showAlert("Added meter", meterToAdd.toString());
 
+        
+
     }
 
     public void showAlert(String alertTitle, String alertMessage) {
@@ -270,104 +293,6 @@ public class Controller {
         metersMetadataLabel.setText("Total number of meters: " + archive.getNumberOfMeters());
     }
 
-    /**
-     * BACKUP AV GAMMEL KODe
-     *
-     */
-
-    /*
-    public void mainMethod() {
-
-        System.out.println("Arbeidskrav 1");
-        System.out.println("Hello, World!");
-
-        MeterArchive meterArchive = new MeterArchive();
-
-        // Legg til placeholder-innhold
-        addPlaceholderContent(meterArchive);
-
-        // Print ut alle
-        meterArchive.printAllMeters();
-
-        // Hent instrument med id "idToCheck"
-
-        String idToCheck = "ABC123";
-
-        System.out.println("*********");
-        System.out.println("Ser etter instrument med ID: " + idToCheck);
-
-        Meter meter = meterArchive.getMeter(idToCheck);
-
-        if (meter != null) {
-            System.out.println("Fant instrument med ID: " + idToCheck + ". Informasjon om instrumentet:");
-            System.out.println(meter);
-
-
-        }
-
-        System.out.println("*********");
-
-        //
-        // Fjern instrument med id idToDelete
-        //
-
-        String idToDelete = "CBA321";
-        System.out.println("Forsøker å slette " + idToDelete);
-
-        if (meterArchive.delete(idToDelete)) {
-            System.out.println("Slettet: " + "CBA321");
-        } else {
-            System.out.println("Kunne ikke slette");
-        }
-
-        System.out.println("*********");
-
-        // Marker et instrument til å være ute av drift
-
-        String idToSetNonFunctional = "WGT000";
-
-        System.out.println("Setter instrument med id: " + idToSetNonFunctional + " til å være ute av drift.");
-        meterArchive.setMeterNonFunctional(idToSetNonFunctional);
-
-
-        System.out.println("*********");
-
-        // Endre plassering på et instrument
-
-        String idToChangeLocation = "WGT000";
-        System.out.println("Endrer plassering på instrument med id: " + idToChangeLocation);
-        meterArchive.changeMeterLocation(idToChangeLocation, "WGT100");
-
-        System.out.println("*********");
-
-        // Printer så listen igjen til slutt for å se endringene
-        System.out.println();
-        System.out.println("Da nærmer vi oss ferdig 😎 Her er oversikten over alle instrumenter akkurat nå:");
-        meterArchive.printAllMeters();
-
-
-        System.out.println();
-        System.out.println("Takk for meg (╯°□°）╯︵ ");
-
-
-    }
-
-    public void addPlaceholderContent(MeterArchive meterArchive) {
-
-        Clock myClock = new Clock("ABC123", "A123", true, 0.1);
-        meterArchive.addMeter(myClock);
-
-        Thermometer myThermometer = new Thermometer("CBA321", "123A", true, 0, 100);
-        meterArchive.addMeter(myThermometer);
-
-        Weight myWeight = new Weight("WGT000", "000L", true, 0, 1000);
-        meterArchive.addMeter(myWeight);
-
-        // Forsøk på å legge til duplikat:
-        meterArchive.addMeter(myWeight);
-
-    }
-     */
 
 
 }
