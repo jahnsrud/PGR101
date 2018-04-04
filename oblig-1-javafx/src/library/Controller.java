@@ -21,6 +21,7 @@ public class Controller {
     public TableView<Meter> tableView;
     public VBox layout;
     public Button addButton;
+    public Button deleteButton;
     public Label metersMetadataLabel;
 
     private MeterArchive archive;
@@ -43,6 +44,11 @@ public class Controller {
         addButton = new Button("Add Meter");
         addButton.setOnAction(e -> {
             addMeter();
+        });
+
+        deleteButton = new Button("Delete");
+        deleteButton.setOnAction(e -> {
+            deleteSelectedItems();
         });
 
         metersMetadataLabel = new Label("");
@@ -70,7 +76,7 @@ public class Controller {
         layout.setSpacing(10);
         layout.setPadding(new Insets(0, 0, 0, 0));
 
-        layout.getChildren().addAll(tableView, addButton, metersMetadataLabel, menuBar);
+        layout.getChildren().addAll(tableView, addButton, deleteButton, metersMetadataLabel, menuBar);
 
 
 
@@ -274,7 +280,16 @@ public class Controller {
 
         // showAlert("Added meter", meterToAdd.toString());
 
-        
+
+
+    }
+
+    private void deleteSelectedItems() {
+        ObservableList<Meter> productsSelected, allMeters;
+        allMeters = tableView.getItems();
+
+        productsSelected = tableView.getSelectionModel().getSelectedItems();
+        productsSelected.forEach(allMeters::remove);
 
     }
 
