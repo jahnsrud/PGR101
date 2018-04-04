@@ -40,42 +40,24 @@ public class Controller {
     @FXML
     public void initialize() {
 
-        layout.setSpacing(10);
-        layout.setPadding(new Insets(0, 0, 0, 0));
-
-        helloLabel = new Label("Library");
         tableView = new TableView<>();
+        helloLabel = new Label("Library");
 
-        // tableView = new TableView<>();
         addButton = new Button("Add Meter");
         addButton.setOnAction(e -> {
             addMeter();
         });
 
-        metersMetadataLabel = new Label();
+        metersMetadataLabel = new Label("");
 
-        // layout = new VBox(10);
+        // Setup TableView
+        configureTableView();
+
+        // Configure our layout
+        layout.setSpacing(10);
+        layout.setPadding(new Insets(0, 0, 0, 0));
 
         layout.getChildren().addAll(tableView, addButton, helloLabel, metersMetadataLabel);
-
-
-
-        /*
-        VBox layout = new VBox(10);
-        layout.setPadding(new Insets(0, 0, 0, 0));
-        layout.getChildren().addAll(menuBar, tableView, hBox, testButton);
-
-
-        Scene scene = new Scene(layout);
-        scene.getStylesheets().add("sample/Style.css");
-
-
-
-        window.setScene(scene);
-        window.show();
-        */
-
-        configureTableView();
 
 
 
