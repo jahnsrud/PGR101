@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -63,6 +64,9 @@ public class Controller {
         MenuItem newFile = new MenuItem("Add Meter...");
         newFile.setOnAction(e -> {
             addMeter();
+        });
+
+        newFile.setAccelerator(new KeyCombination() {
         });
 
 
@@ -285,6 +289,11 @@ public class Controller {
     }
 
     private void deleteSelectedItems() {
+
+        /**
+         * Todo: Fiks sletting!
+         */
+
         ObservableList<Meter> productsSelected, allMeters;
         allMeters = tableView.getItems();
 
