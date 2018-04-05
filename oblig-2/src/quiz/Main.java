@@ -13,6 +13,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("quiz.fxml"));
         primaryStage.setTitle("Quiz");
         primaryStage.setScene(new Scene(root, 450, 600));
+        primaryStage.setMinWidth(100);
+        primaryStage.setMinHeight(100);
         primaryStage.show();
     }
 
