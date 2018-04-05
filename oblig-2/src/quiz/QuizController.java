@@ -8,19 +8,18 @@ public class QuizController {
 
     private List<Question> quizArray;
 
+    private int currentQuestionIndex;
+
     public QuizController() {
 
         quizArray = new ArrayList();
+        currentQuestionIndex = 0;
 
         Collections.addAll(quizArray,
-                new Question("Hvilket land", "Ukjent", "resources/flag-test.png"),
-                new Question("Lol", "Test", "resources/flag-test.png"),
-                new Question("Lol", "Test", "resources/flag-test.png"),
-                new Question("Lol", "Test", "resources/flag-test.png"),
-                new Question("Lol", "Test", "resources/flag-test.png"),
-                new Question("Lol", "Test", "resources/flag-test.png"),
-                new Question("Lol", "Test", "resources/flag-test.png"),
-                new Question("Lol", "Test", "resources/flag-test.png")
+                new Question("Norge", "Oslo", "resources/flag-norway.png"),
+                new Question("Sverige", "Stockholm", "resources/flag-sweden.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png")
+
         );
 
 
@@ -29,12 +28,35 @@ public class QuizController {
     public Question getNextQuestion() {
 
         /**
-         * Warning: midlertidig!
+         * Warning: midlertidig. Veldig midlertidig.
          */
-        return quizArray.get(0);
+
+        if (currentQuestionIndex >= quizArray.size()) {
+            return quizArray.get(0);
+        } else {
+
+            Question newQuestion = quizArray.get(currentQuestionIndex);
+            currentQuestionIndex++;
+            return newQuestion;
+
+        }
 
     }
 
+    public boolean isReplyCorrectForCurrentQuestion(String reply) {
+
+        /**
+         * Warning: midlertidig
+         */
+        Question question = quizArray.get(currentQuestionIndex);
+
+        if (reply.equalsIgnoreCase(question.getCorrectCapital())) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 
 
 

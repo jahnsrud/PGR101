@@ -32,7 +32,7 @@ public class Controller {
         questionLabel = new Label("Spørsmål");
         questionLabel.getStyleClass().add("titleLabel");
 
-        imageView = new ImageView("resources/flag-test.png");
+        imageView = new ImageView();
 
         replyTextField = new TextField();
         replyTextField.setPromptText("Ditt svar...");
@@ -45,7 +45,7 @@ public class Controller {
             replyAction();
         });
 
-        statusLabel = new Label("0/0");
+        statusLabel = new Label();
 
         gridPane.add(questionLabel, 0, 0);
         gridPane.add(imageView, 0, 1);
@@ -53,24 +53,28 @@ public class Controller {
         gridPane.add(replyButton, 1, 2);
         gridPane.add(statusLabel, 0, 3);
 
-        displayQuestion(controller.getNextQuestion());
+        loadNextQuestion();
 
     }
 
     /**
      * Display new question
-     * @param question
      */
 
-    private void displayNextQuestion() {
-
-
-
+    private void loadNextQuestion() {
+        Question question = controller.getNextQuestion();
+        displayQuestion(question);
     }
 
     private void displayQuestion(Question question) {
+
         questionLabel.setText(question.getQuestion());
-        imageView.setImage(new Image("resources/flag-test.png"));
+        imageView.setImage(new Image(question.getImageLocation()));
+
+        replyTextField.clear();
+
+        updateStatus();
+
     }
 
     /**
@@ -78,6 +82,8 @@ public class Controller {
      */
 
     private void updateStatus() {
+
+        statusLabel.setText("0/0: kommer her");
 
     }
 
@@ -91,7 +97,6 @@ public class Controller {
             /**
              * Todo: fix!
              */
-            replyTextField.clear();
             validateReply(reply);
 
         } else {
@@ -104,6 +109,15 @@ public class Controller {
     private void validateReply(String reply) {
 
         System.out.println("Validating: " + reply);
+
+        if (controller.isReplyCorrectForCurrentQuestion(reply)) {
+            System.out.println("Korrekt!");
+        } else {
+            System.out.println("Feil :(");
+        }
+
+        loadNextQuestion();
+
     }
 
 }
