@@ -1,4 +1,4 @@
-package quiz;
+package quiz.Question;
 
 public class Question {
 

@@ -7,8 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-
-import java.io.FileInputStream;
+import quiz.Question.Question;
 
 public class Controller {
 
@@ -68,7 +67,7 @@ public class Controller {
 
     private void displayQuestion(Question question) {
 
-        questionLabel.setText(question.getQuestion());
+        questionLabel.setText("Hva er hovedstaden i " + question.getQuestion() + "?");
         imageView.setImage(new Image(question.getImageLocation()));
 
         replyTextField.clear();
@@ -83,7 +82,7 @@ public class Controller {
 
     private void updateStatus() {
 
-        statusLabel.setText("0/0: kommer her");
+        statusLabel.setText("" + controller.getCorrectReplies() + " / X" + ": kommer her");
 
     }
 

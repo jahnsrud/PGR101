@@ -1,5 +1,7 @@
 package quiz;
 
+import quiz.Question.Question;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,6 +11,8 @@ public class QuizController {
     private List<Question> quizArray;
 
     private int currentQuestionIndex;
+
+    private int correctReplies;
 
     public QuizController() {
 
@@ -33,6 +37,7 @@ public class QuizController {
 
         if (currentQuestionIndex >= quizArray.size()) {
             return quizArray.get(0);
+
         } else {
 
             Question newQuestion = quizArray.get(currentQuestionIndex);
@@ -51,11 +56,16 @@ public class QuizController {
         Question question = quizArray.get(currentQuestionIndex);
 
         if (reply.equalsIgnoreCase(question.getCorrectCapital())) {
+            correctReplies++;
             return true;
         } else {
             return false;
         }
 
+    }
+
+    public int getCorrectReplies() {
+        return correctReplies;
     }
 
 
