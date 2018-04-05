@@ -1,0 +1,8 @@
+.root {
+    -fx-background-color: white;
+}
+
+.titleLabel {
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+}
