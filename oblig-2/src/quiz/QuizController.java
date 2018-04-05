@@ -5,6 +5,7 @@ import quiz.Question.Question;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class QuizController {
 
@@ -13,6 +14,7 @@ public class QuizController {
     private int currentQuestionIndex;
 
     private int correctReplies;
+    private int totalNumberOfQuestions;
 
     public QuizController() {
 
@@ -25,6 +27,20 @@ public class QuizController {
                 new Question("Danmark", "København", "resources/flag-denmark.png")
 
         );
+
+
+    }
+
+    public int getNumberOfQuestionsRemaining() {
+        return quizArray.size();
+    }
+
+    public Question getRandomQuestion() {
+
+        Random random = new Random();
+        currentQuestionIndex = random.nextInt(getNumberOfQuestionsRemaining());
+
+        return quizArray.get(currentQuestionIndex);
 
 
     }
@@ -48,12 +64,14 @@ public class QuizController {
 
     }
 
-    public boolean isReplyCorrectForCurrentQuestion(String reply) {
+    public boolean validateReplyForCurrentQuestion(String reply) {
 
         /**
          * Warning: midlertidig
          */
         Question question = quizArray.get(currentQuestionIndex);
+
+        totalNumberOfQuestions++;
 
         if (reply.equalsIgnoreCase(question.getCorrectCapital())) {
             correctReplies++;
@@ -68,6 +86,8 @@ public class QuizController {
         return correctReplies;
     }
 
-
+    public int getTotalNumberOfQuestions() {
+        return totalNumberOfQuestions;
+    }
 
 }

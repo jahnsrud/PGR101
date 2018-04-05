@@ -40,6 +40,7 @@ public class Controller {
         });
 
         replyButton = new Button("Svar");
+        replyButton.getStyleClass().add("replyButton");
         replyButton.setOnAction(e -> {
             replyAction();
         });
@@ -61,7 +62,7 @@ public class Controller {
      */
 
     private void loadNextQuestion() {
-        Question question = controller.getNextQuestion();
+        Question question = controller.getRandomQuestion();
         displayQuestion(question);
     }
 
@@ -82,7 +83,7 @@ public class Controller {
 
     private void updateStatus() {
 
-        statusLabel.setText("" + controller.getCorrectReplies() + " / X" + ": kommer her");
+        statusLabel.setText("" + controller.getCorrectReplies() + " / " + controller.getTotalNumberOfQuestions());
 
     }
 
@@ -109,7 +110,7 @@ public class Controller {
 
         System.out.println("Validating: " + reply);
 
-        if (controller.isReplyCorrectForCurrentQuestion(reply)) {
+        if (controller.validateReplyForCurrentQuestion(reply)) {
             System.out.println("Korrekt!");
         } else {
             System.out.println("Feil :(");
