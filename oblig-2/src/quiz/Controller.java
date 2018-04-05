@@ -24,20 +24,21 @@ public class Controller {
     public Controller() {
         controller = new QuizController();
 
-        Question test = new Question("Hvilket land er dette?", "Ukjent", "country.png");
-        displayQuestion(test);
-
     }
 
     @FXML
     public void initialize() {
 
         questionLabel = new Label("Spørsmål");
+        questionLabel.getStyleClass().add("titleLabel");
 
         imageView = new ImageView("resources/flag-test.png");
 
         replyTextField = new TextField();
         replyTextField.setPromptText("Ditt svar...");
+        replyTextField.setOnAction(e -> {
+            replyAction();
+        });
 
         replyButton = new Button("Svar");
         replyButton.setOnAction(e -> {
@@ -52,12 +53,20 @@ public class Controller {
         gridPane.add(replyButton, 1, 2);
         gridPane.add(statusLabel, 0, 3);
 
+        displayQuestion(controller.getNextQuestion());
+
     }
 
     /**
      * Display new question
      * @param question
      */
+
+    private void displayNextQuestion() {
+
+
+
+    }
 
     private void displayQuestion(Question question) {
         questionLabel.setText(question.getQuestion());
@@ -73,10 +82,28 @@ public class Controller {
     }
 
     private void replyAction() {
-        System.out.println(replyTextField.getText());
+        String reply = replyTextField.getText();
+
+        if (reply.length() > 0) {
+
+            System.out.println(reply);
+
+            /**
+             * Todo: fix!
+             */
+            replyTextField.clear();
+            validateReply(reply);
+
+        } else {
+            System.out.println("String is empty");
+        }
 
 
+    }
 
+    private void validateReply(String reply) {
+
+        System.out.println("Validating: " + reply);
     }
 
 }

@@ -13,16 +13,25 @@ public class QuizController {
         quizArray = new ArrayList();
 
         Collections.addAll(quizArray,
-                new Question("Hvilket Land", "Ukjent", "country.png"),
-                new Question("Lol", "Mordi", "Fardi"),
-                new Question("Lol", "Mordi", "Fardi"),
-                new Question("Lol", "Mordi", "Fardi"),
-                new Question("Lol", "Mordi", "Fardi"),
-                new Question("Lol", "Mordi", "Fardi"),
-                new Question("Lol", "Mordi", "Fardi"),
-                new Question("Lol", "Mordi", "Fardi")
+                new Question("Hvilket land", "Ukjent", "resources/flag-test.png"),
+                new Question("Lol", "Test", "resources/flag-test.png"),
+                new Question("Lol", "Test", "resources/flag-test.png"),
+                new Question("Lol", "Test", "resources/flag-test.png"),
+                new Question("Lol", "Test", "resources/flag-test.png"),
+                new Question("Lol", "Test", "resources/flag-test.png"),
+                new Question("Lol", "Test", "resources/flag-test.png"),
+                new Question("Lol", "Test", "resources/flag-test.png")
         );
 
+
+    }
+
+    public Question getNextQuestion() {
+
+        /**
+         * Warning: midlertidig!
+         */
+        return quizArray.get(0);
 
     }
 
