@@ -17,4 +17,7 @@ public class MultipleChoiceQuestion extends Question {
 
     }
 
+    public void addChoice(String answer) {
+        choices.add(answer);
+    }
 }

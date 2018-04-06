@@ -21,9 +21,31 @@ public class QuizController {
         quizArray = new ArrayList();
         currentQuestionIndex = 0;
 
+       addQuestions();
+
+    }
+    
+    private void addQuestions() {
+
         Collections.addAll(quizArray,
                 new Question("Norge", "Oslo", "resources/flag-norway.png"),
                 new Question("Sverige", "Stockholm", "resources/flag-sweden.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
+                new Question("Danmark", "København", "resources/flag-denmark.png"),
                 new Question("Danmark", "København", "resources/flag-denmark.png")
 
         );
