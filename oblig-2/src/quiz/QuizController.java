@@ -14,19 +14,25 @@ public class QuizController {
     private List<Question> quizArray;
 
     private int currentQuestionIndex;
+    private int questionLimit;
 
     private int correctReplies;
     private int totalNumberOfQuestions;
 
-    public QuizController() {
+    public QuizController(int questionLimit) {
 
         quizArray = new ArrayList();
         currentQuestionIndex = 0;
+        setQuestionLimit(questionLimit);
 
-       addQuestions();
+        addQuestions();
 
     }
-    
+
+    /**
+     * Midlertidig: burde kanskje leses fra fil?
+     */
+
     private void addQuestions() {
 
         MultipleChoiceQuestion germany = new MultipleChoiceQuestion("Tyskland", "Berlin", "resources/flag-de.png");
@@ -39,11 +45,10 @@ public class QuizController {
         finland.addChoice("Lahti");
         finland.addChoice("Tampere");
 
-        MultipleChoiceQuestion netherlands = new MultipleChoiceQuestion("Nederland", "Amsterdam", "resources/flag-de.png");
+        MultipleChoiceQuestion netherlands = new MultipleChoiceQuestion("Nederland", "Amsterdam", "resources/flag-nl.png");
         netherlands.addChoice("Antwerpen");
         netherlands.addChoice("Brussel");
         netherlands.addChoice("Haag");
-
 
 
         Collections.addAll(quizArray,
@@ -59,37 +64,18 @@ public class QuizController {
 
     }
 
-    public int getNumberOfQuestionsRemaining() {
-        return quizArray.size();
-    }
-
     public Question getRandomQuestion() {
 
         Random random = new Random();
-        currentQuestionIndex = random.nextInt(getNumberOfQuestionsRemaining());
+        currentQuestionIndex = random.nextInt(quizArray.size());
 
         return quizArray.get(currentQuestionIndex);
 
 
     }
 
-    public Question getNextQuestion() {
-
-        /**
-         * Warning: midlertidig. Veldig midlertidig.
-         */
-
-        if (currentQuestionIndex >= quizArray.size()) {
-            return quizArray.get(0);
-
-        } else {
-
-            Question newQuestion = quizArray.get(currentQuestionIndex);
-            currentQuestionIndex++;
-            return newQuestion;
-
-        }
-
+    private Question getCurrentQuestion() {
+        return quizArray.get(currentQuestionIndex);
     }
 
     public boolean validateReplyForCurrentQuestion(String reply) {
@@ -97,12 +83,13 @@ public class QuizController {
         /**
          * Warning: midlertidig
          */
-        Question question = quizArray.get(currentQuestionIndex);
 
-        totalNumberOfQuestions++;
+        Question question = getCurrentQuestion();
+
+        incrementTotalNumberOfQuestions();
 
         if (reply.trim().equalsIgnoreCase(question.getCorrectReply())) {
-            correctReplies++;
+            incrementScore();
             return true;
         } else {
             return false;
@@ -112,9 +99,25 @@ public class QuizController {
 
     public String getCorrectReplyForCurrentQuestion() {
 
-        Question question = quizArray.get(currentQuestionIndex);
+        Question question = getCurrentQuestion();
         return question.getCorrectReply();
 
+    }
+
+    public void setQuestionLimit(int questionLimit) {
+        this.questionLimit = questionLimit;
+    }
+
+    public int getQuestionLimit() {
+        return questionLimit;
+    }
+
+    public void incrementTotalNumberOfQuestions() {
+        totalNumberOfQuestions++;
+    }
+
+    public void incrementScore() {
+        correctReplies++;
     }
 
     public int getCorrectReplies() {

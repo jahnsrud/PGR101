@@ -1,18 +1,24 @@
 package quiz;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import quiz.Question.MultipleChoiceQuestion;
 import quiz.Question.Question;
+
+import java.io.IOException;
 
 public class Controller {
 
     private QuizController controller;
-    
+
     public GridPane gridPane;
     public Label questionLabel;
     public ImageView imageView;
@@ -23,7 +29,7 @@ public class Controller {
     public HBox choicesBox;
 
     public Controller() {
-        controller = new QuizController();
+        controller = new QuizController(10);
 
     }
 
@@ -34,6 +40,8 @@ public class Controller {
         questionLabel.getStyleClass().add("titleLabel");
 
         imageView = new ImageView();
+        imageView.setFitHeight(174);
+        imageView.setFitWidth(290);
 
         replyTextField = new TextField();
         replyTextField.setPromptText("Ditt svar...");
@@ -54,11 +62,42 @@ public class Controller {
         gridPane.add(questionLabel, 0, 0);
         gridPane.add(imageView, 0, 1);
         gridPane.add(replyTextField, 0, 2);
-        gridPane.add(replyButton, 1, 2);
         gridPane.add(choicesBox, 0, 3);
-        gridPane.add(statusLabel, 0, 4);
+        gridPane.add(replyButton, 0, 4);
+        gridPane.add(statusLabel, 0, 5);
+
+
+        /**
+         * Fjernes
+         */
+        Button testButton = new Button("Vis startskjerm [beta]");
+        testButton.setOnAction(e -> {
+            // displayWelcomeScreen();
+        });
+
+        // gridPane.add(testButton, 0, 6);
 
         loadNextQuestion();
+
+    }
+
+    public void displayWelcomeScreen() {
+
+        Stage stage = new Stage();
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("Start.fxml"));
+
+        /*
+
+        Parent root = loader.load();
+        stage.setTitle("Quiz");
+        stage.setScene(new Scene(root, 750, 800));
+        stage.setMinWidth(400);
+        stage.setMinHeight(400);
+        stage.show();
+
+        */
 
     }
 
@@ -83,7 +122,7 @@ public class Controller {
 
         if (question instanceof MultipleChoiceQuestion) {
 
-            MultipleChoiceQuestion multi = (MultipleChoiceQuestion)question;
+            MultipleChoiceQuestion multi = (MultipleChoiceQuestion) question;
 
             for (String choice : multi.getChoices()) {
                 RadioButton choiceButton = new RadioButton();
@@ -157,7 +196,7 @@ public class Controller {
         } else {
             System.out.println("Feil :(");
 
-            alert("Feil! Riktig svar er:", controller.getCorrectReplyForCurrentQuestion());
+            alert("Feil! Riktig svar er:", controller.getCorrectReplyForCurrentQuestion() + "\n" + "Du svarte: " + reply);
 
 
         }
