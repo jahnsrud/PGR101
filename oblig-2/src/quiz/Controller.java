@@ -6,21 +6,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import quiz.Question.MultipleChoiceQuestion;
 import quiz.Question.Question;
 
 public class Controller {
 
+    private QuizController controller;
+    
     public GridPane gridPane;
     public Label questionLabel;
     public ImageView imageView;
     public TextField replyTextField;
     public Button replyButton;
     public Label statusLabel;
-
     public ToggleGroup multipleChoiceGroup;
-
-
-    private QuizController controller;
+    public HBox choicesBox;
 
     public Controller() {
         controller = new QuizController();
@@ -49,27 +49,7 @@ public class Controller {
 
         statusLabel = new Label();
 
-        RadioButton choice1 = new RadioButton();
-        choice1.setText("Hovedstad 1");
-        choice1.setToggleGroup(multipleChoiceGroup);
-
-        RadioButton choice2 = new RadioButton();
-        choice2.setText("Hovedstad 2");
-        choice2.setToggleGroup(multipleChoiceGroup);
-
-        RadioButton choice3 = new RadioButton();
-        choice3.setText("Hovedstad 3");
-        choice3.setToggleGroup(multipleChoiceGroup);
-
-        RadioButton choice4 = new RadioButton();
-        choice4.setText("Hovedstad 4");
-        choice4.setToggleGroup(multipleChoiceGroup);
-
-        // multipleChoiceGroup.getToggles().add()
-
-        HBox choicesBox = new HBox(10);
-        choicesBox.getChildren().addAll(choice1, choice2, choice3, choice4);
-        // choicesBox.getChildren().add(multipleChoiceGroup);
+        choicesBox = new HBox(15);
 
         gridPane.add(questionLabel, 0, 0);
         gridPane.add(imageView, 0, 1);
@@ -88,6 +68,7 @@ public class Controller {
 
     private void loadNextQuestion() {
         Question question = controller.getRandomQuestion();
+
         displayQuestion(question);
     }
 
@@ -97,7 +78,37 @@ public class Controller {
         imageView.setImage(new Image(question.getImageLocation()));
 
         replyTextField.clear();
+        choicesBox.getChildren().clear();
+        // multipleChoiceGroup.getToggles().clear();
 
+        if (question instanceof MultipleChoiceQuestion) {
+
+            MultipleChoiceQuestion multi = (MultipleChoiceQuestion)question;
+
+            for (String choice : multi.getChoices()) {
+                RadioButton choiceButton = new RadioButton();
+                choiceButton.setText(choice);
+                choiceButton.setToggleGroup(multipleChoiceGroup);
+                choicesBox.getChildren().add(choiceButton);
+
+            }
+
+            /**
+             * Todo: The correct reply is now always last:
+             */
+
+            RadioButton choiceButton = new RadioButton();
+            choiceButton.setText(multi.getCorrectReply());
+            choiceButton.setToggleGroup(multipleChoiceGroup);
+            choicesBox.getChildren().add(choiceButton);
+
+            replyTextField.setVisible(false);
+
+        } else {
+            replyTextField.setVisible(true);
+            replyTextField.requestFocus();
+
+        }
 
 
         updateStatus();
@@ -115,12 +126,13 @@ public class Controller {
     }
 
     private void replyAction() {
-        String reply = replyTextField.getText().trim();
 
+        String reply = replyTextField.getText();
         validateReply(reply);
 
 
         // Remove comment to disallow empty text replies
+
         /*
         if (reply.length() > 0) {
 

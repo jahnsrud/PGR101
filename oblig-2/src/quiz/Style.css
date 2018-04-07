@@ -9,6 +9,12 @@
 
 }
 
+#imageView {
+    -fx-border-color: black;
+    -fx-border-width: 4px;
+    -fx-border-radius: 20px;
+}
+
 .replyButton {
     -fx-background-color: black;
     -fx-text-fill: white;

@@ -1,14 +1,14 @@
 package quiz.Question;
 
-public class Question {
+public abstract class Question {
 
     private String question;
     private String correctReply;
     private String imageLocation;
 
-    public Question(String question, String correctCapital, String imageLocation) {
+    public Question(String question, String correctReply, String imageLocation) {
         this.question = question;
-        this.correctReply = correctCapital;
+        this.correctReply = correctReply;
         this.imageLocation = imageLocation;
     }
 

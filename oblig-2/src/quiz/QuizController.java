@@ -1,5 +1,6 @@
 package quiz;
 
+import quiz.Question.MultipleChoiceQuestion;
 import quiz.Question.Question;
 import quiz.Question.TextQuestion;
 
@@ -28,12 +29,31 @@ public class QuizController {
     
     private void addQuestions() {
 
+        MultipleChoiceQuestion germany = new MultipleChoiceQuestion("Tyskland", "Berlin", "resources/flag-de.png");
+        germany.addChoice("Frankfurt");
+        germany.addChoice("Hamburg");
+        germany.addChoice("Köln");
+
+        MultipleChoiceQuestion finland = new MultipleChoiceQuestion("Finland", "Helsingfors", "resources/flag-fi.png");
+        finland.addChoice("Esbo");
+        finland.addChoice("Lahti");
+        finland.addChoice("Tampere");
+
+        MultipleChoiceQuestion netherlands = new MultipleChoiceQuestion("Nederland", "Amsterdam", "resources/flag-de.png");
+        netherlands.addChoice("Antwerpen");
+        netherlands.addChoice("Brussel");
+        netherlands.addChoice("Haag");
+
+
+
         Collections.addAll(quizArray,
                 new TextQuestion("Norge", "Oslo", "resources/flag-no.png"),
                 new TextQuestion("Sverige", "Stockholm", "resources/flag-se.png"),
                 new TextQuestion("Danmark", "København", "resources/flag-dk.png"),
-                new TextQuestion("Tyskland", "Berlin", "resources/flag-de.png"),
-                new TextQuestion("Polen", "Warszawa", "resources/flag-pl.png")
+                new TextQuestion("Polen", "Warszawa", "resources/flag-pl.png"),
+                germany,
+                finland,
+                netherlands
         );
 
 
@@ -81,7 +101,7 @@ public class QuizController {
 
         totalNumberOfQuestions++;
 
-        if (reply.equalsIgnoreCase(question.getCorrectReply())) {
+        if (reply.trim().equalsIgnoreCase(question.getCorrectReply())) {
             correctReplies++;
             return true;
         } else {

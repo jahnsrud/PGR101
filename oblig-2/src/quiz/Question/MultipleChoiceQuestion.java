@@ -1,23 +1,25 @@
 package quiz.Question;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 
 public class MultipleChoiceQuestion extends Question {
 
-    private ArrayList<String> choices;
+    private List<String> choices;
 
-    public MultipleChoiceQuestion() {
-        super("Kommer her", "Test", "resources/nei");
+    public MultipleChoiceQuestion(String question, String correctReply, String imageLocation) {
+        super(question, correctReply, imageLocation);
 
         choices = new ArrayList<>();
-
-        choices.add("1");
-        choices.add("2");
 
     }
 
     public void addChoice(String answer) {
         choices.add(answer);
     }
+
+    public List<String> getChoices() {
+        return choices;
+    }
+
 }
