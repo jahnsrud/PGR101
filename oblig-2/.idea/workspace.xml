@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/quiz/Start.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/quiz/Start.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oblig-1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oblig-1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oblig-1/oblig-1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../oblig-1/oblig-1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/quiz/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/quiz/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/quiz/Question/MultipleChoiceQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/quiz/Question/MultipleChoiceQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/quiz/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/quiz/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/quiz/Question/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/quiz/Question/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/quiz/Question/TextQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/quiz/Question/TextQuestion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/quiz/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/quiz/QuizController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/quiz/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/quiz/Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/quiz/quiz.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/quiz/Quiz.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/flag-denmark.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/flag-norway.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/flag-sweden.png" beforeDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,17 +81,21 @@
       <file leaf-file-name="Question.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/quiz/Question/Question.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="375">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+              <folding>
+                <element signature="e#646#647#0" expanded="true" />
+                <element signature="e#696#697#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/quiz/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-558">
-              <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+            <state relative-caret-position="362">
+              <caret line="117" column="49" lean-forward="true" selection-start-line="117" selection-start-column="49" selection-end-line="117" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,8 +106,8 @@
       <file leaf-file-name="QuizController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/quiz/QuizController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="216">
+              <caret line="79" column="64" lean-forward="true" selection-start-line="79" selection-start-column="64" selection-end-line="79" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#752#753#0" expanded="true" />
@@ -135,8 +136,8 @@
       <file leaf-file-name="TextQuestion.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/quiz/Question/TextQuestion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+            <state relative-caret-position="75">
+              <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -150,21 +151,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Start.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/quiz/Start.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Start.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Start.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/quiz/Start.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+            <state relative-caret-position="150">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -190,7 +181,10 @@
     <findStrings>
       <find>hvilket</find>
       <find>getnext</find>
+      <find>Question</find>
+      <find>new Question</find>
       <find>loadnext</find>
+      <find>.len</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -208,14 +202,14 @@
         <option value="$PROJECT_DIR$/src/quiz/Question.java" />
         <option value="$PROJECT_DIR$/src/quiz/Main.java" />
         <option value="$PROJECT_DIR$/src/quiz/ShakeTransition.java" />
-        <option value="$PROJECT_DIR$/src/quiz/Question/Question.java" />
-        <option value="$PROJECT_DIR$/src/quiz/Question/TextQuestion.java" />
-        <option value="$PROJECT_DIR$/src/quiz/Controller.java" />
-        <option value="$PROJECT_DIR$/src/quiz/QuizController.java" />
         <option value="$PROJECT_DIR$/src/quiz/Start.fxml" />
         <option value="$PROJECT_DIR$/src/quiz/Start.java" />
         <option value="$PROJECT_DIR$/src/quiz/Style.css" />
         <option value="$PROJECT_DIR$/src/quiz/Question/MultipleChoiceQuestion.java" />
+        <option value="$PROJECT_DIR$/src/quiz/Question/TextQuestion.java" />
+        <option value="$PROJECT_DIR$/src/quiz/Question/Question.java" />
+        <option value="$PROJECT_DIR$/src/quiz/QuizController.java" />
+        <option value="$PROJECT_DIR$/src/quiz/Controller.java" />
       </list>
     </option>
   </component>
@@ -226,7 +220,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="948" />
@@ -409,15 +403,16 @@
       <workItem from="1522928724114" duration="23000" />
       <workItem from="1522928785959" duration="2538000" />
       <workItem from="1522931814849" duration="9525000" />
-      <workItem from="1522960249684" duration="3200000" />
+      <workItem from="1522960249684" duration="5228000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16588000" />
+    <option name="totallyTimeSpent" value="18616000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="947" extended-state="6" />
+    <frame x="0" y="23" width="1680" height="948" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -428,9 +423,9 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3298969" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32951945" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32951945" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32951945" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5715922" visible="true" weight="0.18630952" />
@@ -488,6 +483,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+          <folding>
+            <element signature="e#646#647#0" expanded="true" />
+            <element signature="e#696#697#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -543,6 +542,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="81" selection-start-line="8" selection-start-column="81" selection-end-line="8" selection-end-column="81" />
+          <folding>
+            <element signature="e#646#647#0" expanded="true" />
+            <element signature="e#696#697#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -630,52 +633,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/quiz/Question/TextQuestion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/quiz/Quiz.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/quiz/QuizController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#752#753#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
-            <element signature="e#1944#1945#0" expanded="true" />
-            <element signature="e#1989#1990#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/quiz/Question/Question.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/quiz/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/quiz/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-558">
-          <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -696,8 +661,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/quiz/Start.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/quiz/Question/TextQuestion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/quiz/Question/Question.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#646#647#0" expanded="true" />
+            <element signature="e#696#697#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/quiz/QuizController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="79" column="64" lean-forward="true" selection-start-line="79" selection-start-column="64" selection-end-line="79" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#752#753#0" expanded="true" />
+            <element signature="e#783#784#0" expanded="true" />
+            <element signature="e#1944#1945#0" expanded="true" />
+            <element signature="e#1989#1990#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="2646" column="18" selection-start-line="2646" selection-start-column="18" selection-end-line="2646" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/quiz/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="117" column="49" lean-forward="true" selection-start-line="117" selection-start-column="49" selection-end-line="117" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,6 +1,7 @@
 package quiz;
 
 import quiz.Question.Question;
+import quiz.Question.TextQuestion;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,26 +29,11 @@ public class QuizController {
     private void addQuestions() {
 
         Collections.addAll(quizArray,
-                new Question("Norge", "Oslo", "resources/flag-norway.png"),
-                new Question("Sverige", "Stockholm", "resources/flag-sweden.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png"),
-                new Question("Danmark", "København", "resources/flag-denmark.png")
-
+                new TextQuestion("Norge", "Oslo", "resources/flag-no.png"),
+                new TextQuestion("Sverige", "Stockholm", "resources/flag-se.png"),
+                new TextQuestion("Danmark", "København", "resources/flag-dk.png"),
+                new TextQuestion("Tyskland", "Berlin", "resources/flag-de.png"),
+                new TextQuestion("Polen", "Warszawa", "resources/flag-pl.png")
         );
 
 
@@ -95,12 +81,19 @@ public class QuizController {
 
         totalNumberOfQuestions++;
 
-        if (reply.equalsIgnoreCase(question.getCorrectCapital())) {
+        if (reply.equalsIgnoreCase(question.getCorrectReply())) {
             correctReplies++;
             return true;
         } else {
             return false;
         }
+
+    }
+
+    public String getCorrectReplyForCurrentQuestion() {
+
+        Question question = quizArray.get(currentQuestionIndex);
+        return question.getCorrectReply();
 
     }
 

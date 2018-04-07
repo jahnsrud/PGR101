@@ -1,12 +1,11 @@
 package quiz;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import quiz.Question.Question;
 
 public class Controller {
@@ -17,6 +16,9 @@ public class Controller {
     public TextField replyTextField;
     public Button replyButton;
     public Label statusLabel;
+
+    public ToggleGroup multipleChoiceGroup;
+
 
     private QuizController controller;
 
@@ -47,11 +49,34 @@ public class Controller {
 
         statusLabel = new Label();
 
+        RadioButton choice1 = new RadioButton();
+        choice1.setText("Hovedstad 1");
+        choice1.setToggleGroup(multipleChoiceGroup);
+
+        RadioButton choice2 = new RadioButton();
+        choice2.setText("Hovedstad 2");
+        choice2.setToggleGroup(multipleChoiceGroup);
+
+        RadioButton choice3 = new RadioButton();
+        choice3.setText("Hovedstad 3");
+        choice3.setToggleGroup(multipleChoiceGroup);
+
+        RadioButton choice4 = new RadioButton();
+        choice4.setText("Hovedstad 4");
+        choice4.setToggleGroup(multipleChoiceGroup);
+
+        // multipleChoiceGroup.getToggles().add()
+
+        HBox choicesBox = new HBox(10);
+        choicesBox.getChildren().addAll(choice1, choice2, choice3, choice4);
+        // choicesBox.getChildren().add(multipleChoiceGroup);
+
         gridPane.add(questionLabel, 0, 0);
         gridPane.add(imageView, 0, 1);
         gridPane.add(replyTextField, 0, 2);
         gridPane.add(replyButton, 1, 2);
-        gridPane.add(statusLabel, 0, 3);
+        gridPane.add(choicesBox, 0, 3);
+        gridPane.add(statusLabel, 0, 4);
 
         loadNextQuestion();
 
@@ -73,6 +98,8 @@ public class Controller {
 
         replyTextField.clear();
 
+
+
         updateStatus();
 
     }
@@ -88,20 +115,23 @@ public class Controller {
     }
 
     private void replyAction() {
-        String reply = replyTextField.getText();
+        String reply = replyTextField.getText().trim();
 
+        validateReply(reply);
+
+
+        // Remove comment to disallow empty text replies
+        /*
         if (reply.length() > 0) {
 
             System.out.println(reply);
 
-            /**
-             * Todo: fix!
-             */
-            validateReply(reply);
+
 
         } else {
             System.out.println("String is empty");
         }
+        */
 
 
     }
@@ -114,9 +144,23 @@ public class Controller {
             System.out.println("Korrekt!");
         } else {
             System.out.println("Feil :(");
+
+            alert("Feil! Riktig svar er:", controller.getCorrectReplyForCurrentQuestion());
+
+
         }
 
         loadNextQuestion();
+
+    }
+
+    public void alert(String title, String message) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+        alert.show();
 
     }
 

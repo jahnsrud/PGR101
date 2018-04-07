@@ -2,8 +2,8 @@ package quiz.Question;
 
 public class TextQuestion extends Question {
 
-    public TextQuestion() {
-        super("Kommer her", "Test", "resources/nei");
+    public TextQuestion(String question, String correctReply, String imageLocation) {
+        super(question, correctReply, imageLocation);
     }
 
 }

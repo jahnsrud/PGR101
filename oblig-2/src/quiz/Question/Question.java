@@ -3,12 +3,12 @@ package quiz.Question;
 public class Question {
 
     private String question;
-    private String correctCapital;
+    private String correctReply;
     private String imageLocation;
 
     public Question(String question, String correctCapital, String imageLocation) {
         this.question = question;
-        this.correctCapital = correctCapital;
+        this.correctReply = correctCapital;
         this.imageLocation = imageLocation;
     }
 
@@ -20,12 +20,12 @@ public class Question {
         this.question = question;
     }
 
-    public String getCorrectCapital() {
-        return correctCapital;
+    public String getCorrectReply() {
+        return correctReply;
     }
 
-    public void setCorrectCapital(String correctCapital) {
-        this.correctCapital = correctCapital;
+    public void setCorrectReply(String correctReply) {
+        this.correctReply = correctReply;
     }
 
     public String getImageLocation() {
