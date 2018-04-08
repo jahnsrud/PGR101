@@ -14,10 +14,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import quiz.Question.MultipleChoiceQuestion;
 import quiz.Question.Question;
+
+import javax.print.attribute.standard.JobImpressionsSupported;
+import java.nio.file.Paths;
 
 public class Controller {
 
@@ -256,9 +260,22 @@ public class Controller {
 
         if (controller.validateReplyForCurrentQuestion(reply)) {
 
+            // AudioClip sound = new AudioClip(Paths.get("src/sound/right_answer.mp3").toUri().toString());
+            // sound.play();
+
+
         } else {
 
-            alert("Feil!", "Riktig svar er: " + controller.getCorrectReplyForCurrentQuestion() + "\n" + "Du svarte: " + reply);
+            String message = "Riktig svar er: " + controller.getCorrectReplyForCurrentQuestion();
+            if (reply.length() > 0) {
+                message = message + "\n" + "Du svarte: " + reply;
+            }
+
+            alert("Feil!", message);
+
+
+            // AudioClip sound = new AudioClip(Paths.get("src/sound/wrong_answer.mp3").toUri().toString());
+            // sound.play();
 
 
         }
@@ -266,6 +283,8 @@ public class Controller {
         loadNextQuestion();
 
     }
+
+
 
     /*
     public void displayWelcomeScreen() {
@@ -295,7 +314,7 @@ public class Controller {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
-        alert.setHeaderText(title);
+        alert.setHeaderText(null);
         alert.setContentText(message);
         alert.show();
 
