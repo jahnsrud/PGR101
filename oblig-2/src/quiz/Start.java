@@ -1,9 +1,14 @@
 package quiz;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Start {
 
@@ -17,8 +22,6 @@ public class Start {
     @FXML
     public void initialize() {
 
-        System.out.println("Velkommen!");
-
         quizGroup = new ToggleGroup();
 
         RadioButton radioButton1 = new RadioButton("10");
@@ -29,7 +32,7 @@ public class Start {
         radioButton2.setToggleGroup(quizGroup);
         radioButton2.setSelected(false);
 
-        RadioButton radioButton3 = new RadioButton("30");
+        RadioButton radioButton3 = new RadioButton("45 (alle)");
         radioButton3.setToggleGroup(quizGroup);
         radioButton3.setSelected(false);
 
@@ -38,7 +41,7 @@ public class Start {
 
         playButton = new Button("Start spill");
         playButton.setOnAction(e -> {
-            System.out.println("kommer her");
+            startGame();
         });
 
         welcomeLabel = new Label("Europeiske hovedsteder");
@@ -53,10 +56,20 @@ public class Start {
 
 
 
+
     }
 
     private void startGame() {
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
+            Stage stage = (Stage) playButton.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 650, 750);
+            stage.setScene(scene);
+
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
 
     }
 

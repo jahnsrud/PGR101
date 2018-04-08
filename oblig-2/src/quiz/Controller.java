@@ -61,19 +61,11 @@ public class Controller {
         choicesBox = new HBox(15);
 
         quitButton = new Button("Avslutt");
+        quitButton.getStyleClass().add("quitButton");
         quitButton.setOnAction(e -> {
 
         });
 
-
-        /**
-         * Fjernes
-         */
-
-        Button testButton = new Button("Vis startskjerm [beta]");
-        testButton.setOnAction(e -> {
-            displayWelcomeScreen();
-        });
 
         gridPane.add(questionLabel, 0, 0);
         gridPane.add(imageView, 0, 1);
@@ -82,7 +74,6 @@ public class Controller {
         gridPane.add(replyButton, 0, 4);
         gridPane.add(statusLabel, 0, 5);
         gridPane.add(quitButton, 0,6);
-        gridPane.add(testButton, 0, 7);
 
         loadNextQuestion();
 
@@ -108,9 +99,9 @@ public class Controller {
 
     private void endGame() {
 
-        System.out.println("Game over 😎");
-        alert("Game over 😎", "Todo: fix");
+        System.out.println("--- Game over ---");
         questionLabel.setText("Game over 😎");
+        imageView.setImage(null);
 
         choicesBox.setVisible(false);
         replyButton.setVisible(false);
@@ -241,6 +232,7 @@ public class Controller {
 
     }
 
+    /*
     public void displayWelcomeScreen() {
 
         Stage stage = new Stage();
@@ -262,6 +254,7 @@ public class Controller {
         }
 
     }
+    */
 
     public void alert(String title, String message) {
 

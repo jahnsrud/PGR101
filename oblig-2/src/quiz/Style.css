@@ -22,3 +22,9 @@
     -fx-font-size: 14px;
 
 }
+
+.quitButton {
+
+    -fx-background-color: #ff4050;
+    -fx-text-fill: white;
+}
