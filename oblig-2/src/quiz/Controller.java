@@ -141,6 +141,7 @@ public class Controller {
             displayQuestion(question);
 
         } else {
+            // No more questions, ending game
             endGame();
         }
 
@@ -167,7 +168,7 @@ public class Controller {
     }
 
     /**
-     * Return to start 
+     * Return to the start screen
      */
 
     public void quitQuiz() {
@@ -216,7 +217,7 @@ public class Controller {
     }
 
     /**
-     * Helper method for adding choices
+     * Helper method for adding Radio Buttons for choices
      * @param choice
      */
 
@@ -234,7 +235,7 @@ public class Controller {
     }
 
     /**
-     * Update current score
+     * Update current status
      */
 
     private void updateStatus() {
@@ -279,31 +280,6 @@ public class Controller {
 
     }
 
-
-
-    /*
-    public void displayWelcomeScreen() {
-
-        Stage stage = new Stage();
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("Start.fxml"));
-
-        try {
-
-            Parent root = loader.load();
-            stage.setTitle("Quiz");
-            stage.setScene(new Scene(root, 450, 450));
-            stage.setMinWidth(400);
-            stage.setMinHeight(400);
-            stage.show();
-
-        } catch (Exception e) {
-            System.out.println("Couldn't load stage");
-        }
-
-    }
-    */
 
     public void alert(String title, String message) {
 

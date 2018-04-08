@@ -26,6 +26,7 @@ public class Start {
 
     private int questionLimit;
 
+
     @FXML
     public void initialize() {
 
@@ -33,30 +34,12 @@ public class Start {
 
         quizGroup = new ToggleGroup();
 
-        RadioButton radioButton1 = new RadioButton("10");
-        radioButton1.setToggleGroup(quizGroup);
-        radioButton1.setSelected(true);
-        radioButton1.setOnAction(e -> {
-            setQuestionLimit(10);
-        });
-
-        RadioButton radioButton2 = new RadioButton("25");
-        radioButton2.setToggleGroup(quizGroup);
-        radioButton2.setSelected(false);
-        radioButton2.setOnAction(e -> {
-            setQuestionLimit(25);
-        });
-
-        RadioButton radioButton3 = new RadioButton("45");
-        radioButton3.setToggleGroup(quizGroup);
-        radioButton3.setSelected(false);
-        radioButton3.setOnAction(e -> {
-            setQuestionLimit(45);
-        });
-
         HBox hBox = new HBox(20);
         hBox.setAlignment(Pos.CENTER);
-        hBox.getChildren().addAll(radioButton1, radioButton2, radioButton3);
+
+        addRadioButton("10", 10, hBox, true);
+        addRadioButton("25", 25, hBox, false);
+        addRadioButton("45", 45, hBox, false);
 
         playButton = new Button("START");
         playButton.getStyleClass().addAll("playButton", "button");
@@ -97,15 +80,18 @@ public class Start {
         borderPane.setCenter(vBox);
         borderPane.setBottom(bottomPane);
 
-        /*
-        gridPane.add(welcomeLabel, 0, 0);
-        gridPane.add(subtitleLabel, 0, 1);
-        gridPane.add(hBox, 0, 2);
-        gridPane.add(playButton, 0, 3);
-*/
+    }
 
+    private void addRadioButton(String title, int limit, HBox hBox, boolean selected) {
 
+        RadioButton radioButton = new RadioButton(title);
+        radioButton.setToggleGroup(quizGroup);
+        radioButton.setSelected(selected);
+        radioButton.setOnAction(e -> {
+            setQuestionLimit(limit);
+        });
 
+        hBox.getChildren().add(radioButton);
     }
 
     private void startGame() {
