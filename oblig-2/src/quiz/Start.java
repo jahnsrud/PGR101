@@ -2,15 +2,10 @@ package quiz;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 public class Start {
-
-    /*
-    Add control for setting question limit
-     */
 
     public Label welcomeLabel;
     public Button playButton;
@@ -50,6 +45,11 @@ public class Start {
         gridPane.add(hBox, 0, 1);
         gridPane.add(playButton, 0, 2);
 
+
+
+    }
+
+    private void startGame() {
 
 
     }

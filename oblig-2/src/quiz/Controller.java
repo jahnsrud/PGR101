@@ -13,20 +13,19 @@ import javafx.stage.Stage;
 import quiz.Question.MultipleChoiceQuestion;
 import quiz.Question.Question;
 
-import java.io.IOException;
-
 public class Controller {
 
     private QuizController controller;
 
     public GridPane gridPane;
-    public Label questionLabel;
-    public ImageView imageView;
-    public TextField replyTextField;
-    public Button replyButton;
-    public Label statusLabel;
-    public ToggleGroup multipleChoiceGroup;
-    public HBox choicesBox;
+    private Label questionLabel;
+    private ImageView imageView;
+    private TextField replyTextField;
+    private Button replyButton;
+    private Label statusLabel;
+    private ToggleGroup multipleChoiceGroup;
+    private HBox choicesBox;
+    private Button quitButton;
 
     public Controller() {
         controller = new QuizController(10);
@@ -61,10 +60,16 @@ public class Controller {
 
         choicesBox = new HBox(15);
 
+        quitButton = new Button("Avslutt");
+        quitButton.setOnAction(e -> {
+
+        });
+
 
         /**
          * Fjernes
          */
+
         Button testButton = new Button("Vis startskjerm [beta]");
         testButton.setOnAction(e -> {
             displayWelcomeScreen();
@@ -76,33 +81,10 @@ public class Controller {
         gridPane.add(choicesBox, 0, 3);
         gridPane.add(replyButton, 0, 4);
         gridPane.add(statusLabel, 0, 5);
-        gridPane.add(testButton, 0, 6);
+        gridPane.add(quitButton, 0,6);
+        gridPane.add(testButton, 0, 7);
 
         loadNextQuestion();
-
-    }
-
-    public void displayWelcomeScreen() {
-
-        Stage stage = new Stage();
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("Start.fxml"));
-
-        try {
-
-            Parent root = loader.load();
-            stage.setTitle("Quiz");
-            stage.setScene(new Scene(root, 450, 450));
-            stage.setMinWidth(400);
-            stage.setMinHeight(400);
-            stage.show();
-
-        } catch (Exception e) {
-            System.out.println("Couldn't load stage");
-        }
-
-
 
     }
 
@@ -111,8 +93,24 @@ public class Controller {
      */
 
     private void loadNextQuestion() {
-        Question question = controller.getRandomQuestion();
-        displayQuestion(question);
+
+        if (controller.canGetNewQuestion()) {
+
+            Question question = controller.getRandomQuestion();
+            displayQuestion(question);
+
+        } else {
+            endGame();
+        }
+
+
+    }
+
+    private void endGame() {
+
+        System.out.println("Game over 😎");
+        alert("Game over 😎", "Todo: fix");
+        questionLabel.setText("Game over 😎");
     }
 
     private void displayQuestion(Question question) {
@@ -177,7 +175,8 @@ public class Controller {
 
     private void updateStatus() {
 
-        statusLabel.setText("" + controller.getCorrectReplies() + " / " + controller.getTotalNumberOfQuestions());
+        statusLabel.setText("" + controller.getCorrectReplies() + " / " + controller.getNumberOfQuestionsAsked() + "\n"
+                + "Antall spørsmål totalt: " + controller.getQuestionLimit());
 
     }
 
@@ -234,6 +233,28 @@ public class Controller {
         }
 
         loadNextQuestion();
+
+    }
+
+    public void displayWelcomeScreen() {
+
+        Stage stage = new Stage();
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("Start.fxml"));
+
+        try {
+
+            Parent root = loader.load();
+            stage.setTitle("Quiz");
+            stage.setScene(new Scene(root, 450, 450));
+            stage.setMinWidth(400);
+            stage.setMinHeight(400);
+            stage.show();
+
+        } catch (Exception e) {
+            System.out.println("Couldn't load stage");
+        }
 
     }
 

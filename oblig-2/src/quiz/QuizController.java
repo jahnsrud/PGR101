@@ -12,16 +12,17 @@ import java.util.Random;
 public class QuizController {
 
     private List<Question> quizArray;
-
-    private int currentQuestionIndex;
     private int questionLimit;
 
+    private int currentQuestionIndex;
+
     private int correctReplies;
-    private int totalNumberOfQuestions;
+    private int numberOfQuestionsAsked;
 
     public QuizController(int questionLimit) {
 
         quizArray = new ArrayList();
+
         currentQuestionIndex = 0;
         setQuestionLimit(questionLimit);
 
@@ -30,7 +31,7 @@ public class QuizController {
     }
 
     /**
-     * Midlertidig: burde kanskje leses fra fil?
+     * Burde leses fra fil?
      */
 
     private void addQuestions() {
@@ -74,6 +75,16 @@ public class QuizController {
 
     }
 
+    public boolean canGetNewQuestion() {
+
+        if (getNumberOfQuestionsAsked() >= getQuestionLimit()) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
     private Question getCurrentQuestion() {
         return quizArray.get(currentQuestionIndex);
     }
@@ -86,7 +97,7 @@ public class QuizController {
 
         Question question = getCurrentQuestion();
 
-        incrementTotalNumberOfQuestions();
+        incrementNumberOfQuestionsAsked();
 
         if (reply.trim().equalsIgnoreCase(question.getCorrectReply())) {
             incrementScore();
@@ -112,8 +123,8 @@ public class QuizController {
         return questionLimit;
     }
 
-    public void incrementTotalNumberOfQuestions() {
-        totalNumberOfQuestions++;
+    public void incrementNumberOfQuestionsAsked() {
+        numberOfQuestionsAsked++;
     }
 
     public void incrementScore() {
@@ -124,8 +135,8 @@ public class QuizController {
         return correctReplies;
     }
 
-    public int getTotalNumberOfQuestions() {
-        return totalNumberOfQuestions;
+    public int getNumberOfQuestionsAsked() {
+        return numberOfQuestionsAsked;
     }
 
 }
