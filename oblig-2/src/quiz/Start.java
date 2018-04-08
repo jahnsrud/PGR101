@@ -2,6 +2,7 @@ package quiz;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -53,15 +54,16 @@ public class Start {
             setQuestionLimit(45);
         });
 
-        HBox hBox = new HBox(10);
+        HBox hBox = new HBox(20);
         hBox.setAlignment(Pos.CENTER);
         hBox.getChildren().addAll(radioButton1, radioButton2, radioButton3);
 
-        playButton = new Button("Start");
-        playButton.getStyleClass().add("playButton");
+        playButton = new Button("START");
+        playButton.getStyleClass().addAll("playButton", "button");
         playButton.setOnAction(e -> {
             startGame();
         });
+        playButton.setPadding(new Insets(10, 90, 10, 90));
 
         welcomeLabel = new Label("Europeiske hovedsteder");
         welcomeLabel.getStyleClass().add("titleLabel");
@@ -74,9 +76,11 @@ public class Start {
 
         // Center
 
-        VBox vBox = new VBox(10);
+        VBox vBox = new VBox(16);
         vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().addAll(welcomeLabel, subtitleLabel, hBox);
+        vBox.setMargin(welcomeLabel, new Insets(0, 0, 20, 0));
+        vBox.getStyleClass().add("startBackground");
 
         // Bottom
 
@@ -106,16 +110,18 @@ public class Start {
 
     private void startGame() {
 
+        Scene startScene = playButton.getScene();
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
 
-            Controller quizController = new Controller(getQuestionLimit());
+            Controller quizController = new Controller(getQuestionLimit(), startScene);
             loader.setController(quizController);
 
             Parent root = loader.load();
 
             Stage stage = (Stage) playButton.getScene().getWindow();
-            Scene scene = new Scene(root, 550, 600);
+            Scene scene = new Scene(root, 550, 630);
 
             stage.setScene(scene);
 

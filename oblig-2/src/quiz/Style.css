@@ -7,6 +7,10 @@
     -fx-background-color: #EBEBEB;
 }
 
+.startBackground {
+    -fx-background-image: url("resources/start-background.png");
+}
+
 .topLabel {
     -fx-text-fill: #747474;
     -fx-font-size: 10pt;
@@ -58,7 +62,7 @@
 }
 
 .playButton {
-    -fx-font-size: 24px;
-    -fx-background-color: black;
+    -fx-font-size: 22px;
+    -fx-background-color: #78A7F2;
     -fx-text-fill: white;
 }

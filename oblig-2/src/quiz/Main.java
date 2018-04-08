@@ -9,10 +9,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Start.fxml"));
         primaryStage.setTitle("Quiz");
-        primaryStage.setScene(new Scene(root, 550, 600));
+        primaryStage.setScene(new Scene(root, 550, 630));
         primaryStage.setMinWidth(450);
         primaryStage.setMinHeight(550);
         primaryStage.show();

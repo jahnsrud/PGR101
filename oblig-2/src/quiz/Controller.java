@@ -20,8 +20,6 @@ import javafx.stage.Stage;
 import quiz.Question.MultipleChoiceQuestion;
 import quiz.Question.Question;
 
-import javax.print.attribute.standard.JobImpressionsSupported;
-import java.nio.file.Paths;
 
 public class Controller {
 
@@ -38,14 +36,11 @@ public class Controller {
     private HBox choicesBox;
     private Button quitButton;
 
+    private Scene startScene;
 
-    public Controller() {
-        this(10);
-
-    }
-
-    public Controller (int questionLimit) {
+    public Controller (int questionLimit, Scene startScene) {
         controller = new QuizController(questionLimit);
+        this.startScene = startScene;
     }
 
     @FXML
@@ -69,6 +64,7 @@ public class Controller {
         replyTextField.setOnAction(e -> {
             validateReply(replyTextField.getText());
         });
+        replyTextField.setMinHeight(34);
 
         replyButton = new Button("Svar");
         replyButton.getStyleClass().addAll("replyButton", "button");
@@ -171,14 +167,13 @@ public class Controller {
     }
 
     /**
-     * Todo: fix! Should return to main menu, not quit the app
+     * Return to start 
      */
 
     public void quitQuiz() {
 
-        Platform.exit();
-
-
+        Stage stage = (Stage) quitButton.getScene().getWindow();
+        stage.setScene(startScene);
 
 
     }
