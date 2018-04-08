@@ -53,7 +53,8 @@ public class Start {
         HBox hBox = new HBox(10);
         hBox.getChildren().addAll(radioButton1, radioButton2, radioButton3);
 
-        playButton = new Button("Start spill");
+        playButton = new Button("Start");
+        playButton.getStyleClass().add("playButton");
         playButton.setOnAction(e -> {
             startGame();
         });

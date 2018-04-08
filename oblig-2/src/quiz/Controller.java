@@ -47,6 +47,7 @@ public class Controller {
         imageView = new ImageView();
         imageView.setFitHeight(174);
         imageView.setFitWidth(290);
+        imageView.getStyleClass().add("quizImageView");
 
         replyTextField = new TextField();
         replyTextField.setPromptText("Ditt svar...");
@@ -194,8 +195,15 @@ public class Controller {
 
     private void updateStatus() {
 
-        statusLabel.setText("" + controller.getCorrectReplies() + " / " + controller.getNumberOfQuestionsAsked() + "\n"
-                + "Antall spørsmål totalt: " + controller.getQuestionLimit());
+        String status = controller.getCorrectReplies() + " / " + controller.getNumberOfQuestionsAsked();
+
+        if (controller.canGetNewQuestion()) {
+
+            status = status + "\n" + "Antall spørsmål totalt: " + controller.getQuestionLimit();
+
+        }
+
+        statusLabel.setText(status);
 
     }
 

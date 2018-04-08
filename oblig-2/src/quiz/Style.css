@@ -9,10 +9,9 @@
 
 }
 
-#imageView {
-    -fx-border-color: black;
-    -fx-border-width: 4px;
-    -fx-border-radius: 20px;
+.quizImageView {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.22), 10, 0, 0, 0);
+
 }
 
 .replyButton {
@@ -23,12 +22,21 @@
 
 }
 
-.quitButton {
+.choiceButton {
+    /* -fx-background-color: black; */
+}
 
+.quitButton {
     -fx-background-color: #ff4050;
     -fx-text-fill: white;
 }
 
 .quitButton:hover {
     -fx-opacity: 0.8;
+}
+
+.playButton {
+    -fx-font-size: 24px;
+    -fx-background-color: black;
+    -fx-text-fill: white;
 }
