@@ -149,9 +149,11 @@ public class QuizController {
 
         Question question = getCurrentQuestion();
 
+        reply = reply.trim().replaceAll("[-!#$%&/()=?`´¨¨*^-_.,;:<>'§]", "");
+
         incrementNumberOfQuestionsAsked();
 
-        if (reply.trim().equalsIgnoreCase(question.getCorrectReply())) {
+        if (reply.equalsIgnoreCase(question.getCorrectReply())) {
             incrementScore();
 
             // The question is removed when the user reply correctly. If they don't, there's a chance they'll get it again

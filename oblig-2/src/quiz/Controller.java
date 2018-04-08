@@ -129,6 +129,7 @@ public class Controller {
      */
 
     public void quitQuiz() {
+
         Platform.exit();
     }
 
@@ -145,32 +146,14 @@ public class Controller {
             MultipleChoiceQuestion multi = (MultipleChoiceQuestion) question;
 
             for (String choice : multi.getChoices()) {
-                RadioButton choiceButton = new RadioButton();
-                choiceButton.setText(choice);
-                choiceButton.setToggleGroup(multipleChoiceGroup);
-
-                choiceButton.setOnAction(e -> {
-                    validateReply(choiceButton.getText());
-                });
-
-                choicesBox.getChildren().add(choiceButton);
-
+                addRadioButtonWithChoice(choice);
             }
 
             /**
              * Todo: The correct reply is currently always last:
              */
 
-            RadioButton choiceButton = new RadioButton();
-            choiceButton.setText(multi.getCorrectReply());
-            choiceButton.setToggleGroup(multipleChoiceGroup);
-
-            choiceButton.setOnAction(e -> {
-                validateReply(choiceButton.getText());
-            });
-
-
-            choicesBox.getChildren().add(choiceButton);
+            addRadioButtonWithChoice(multi.getCorrectReply());
 
             replyTextField.setVisible(false);
             replyButton.setVisible(false);
@@ -185,6 +168,24 @@ public class Controller {
 
         updateStatus();
 
+    }
+
+    /**
+     * Helper method for adding choices
+     * @param choice
+     */
+
+    private void addRadioButtonWithChoice(String choice) {
+        RadioButton choiceButton = new RadioButton();
+        choiceButton.setText(choice);
+        choiceButton.setToggleGroup(multipleChoiceGroup);
+        choiceButton.getStyleClass().add("choiceButton");
+
+        choiceButton.setOnAction(e -> {
+            validateReply(choiceButton.getText());
+        });
+
+        choicesBox.getChildren().add(choiceButton);
     }
 
     /**
