@@ -28,9 +28,14 @@ public class Controller {
     private HBox choicesBox;
     private Button quitButton;
 
-    public Controller() {
-        controller = new QuizController(10);
 
+    public Controller() {
+        this(10);
+
+    }
+
+    public Controller (int questionLimit) {
+        controller = new QuizController(questionLimit);
     }
 
     @FXML
@@ -114,6 +119,8 @@ public class Controller {
 
         quitButton.setMaxWidth(Double.MAX_VALUE);
 
+        updateStatus();
+
 
     }
 
@@ -151,7 +158,7 @@ public class Controller {
             }
 
             /**
-             * Todo: The correct reply is now always last:
+             * Todo: The correct reply is currently always last:
              */
 
             RadioButton choiceButton = new RadioButton();

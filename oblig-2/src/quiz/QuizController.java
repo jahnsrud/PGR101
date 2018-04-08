@@ -131,7 +131,9 @@ public class QuizController {
 
     public boolean canGetNewQuestion() {
 
-        if (getNumberOfQuestionsAsked() >= getQuestionLimit()) {
+        if (quizArray.isEmpty()) {
+            return false;
+        } else if (getNumberOfQuestionsAsked() >= getQuestionLimit()) {
             return false;
         } else {
             return true;
@@ -151,11 +153,19 @@ public class QuizController {
 
         if (reply.trim().equalsIgnoreCase(question.getCorrectReply())) {
             incrementScore();
+
+            // The question is removed when the user reply correctly. If they don't, there's a chance they'll get it again
+            removeQuestion(question);
+
             return true;
         } else {
             return false;
         }
 
+    }
+
+    private void removeQuestion(Question question) {
+        quizArray.remove(question);
     }
 
     public String getCorrectReplyForCurrentQuestion() {

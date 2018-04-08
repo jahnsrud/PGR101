@@ -2,6 +2,7 @@ package quiz;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -63,8 +64,15 @@ public class Start {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
+
+            Controller quizController = new Controller(20);
+            loader.setController(quizController);
+
+            Parent root = loader.load();
+
             Stage stage = (Stage) playButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 550, 650);
+            Scene scene = new Scene(root, 550, 650);
+
             stage.setScene(scene);
 
         } catch (IOException io) {
