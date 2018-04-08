@@ -1,5 +1,6 @@
 package quiz;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -45,13 +46,13 @@ public class Controller {
         replyTextField = new TextField();
         replyTextField.setPromptText("Ditt svar...");
         replyTextField.setOnAction(e -> {
-            replyAction();
+            validateReply(replyTextField.getText());
         });
 
         replyButton = new Button("Svar");
         replyButton.getStyleClass().add("replyButton");
         replyButton.setOnAction(e -> {
-            replyAction();
+            validateReply(replyTextField.getText());
         });
 
         replyButton.setMaxWidth(Double.MAX_VALUE);
@@ -63,6 +64,7 @@ public class Controller {
         quitButton = new Button("Avslutt");
         quitButton.getStyleClass().add("quitButton");
         quitButton.setOnAction(e -> {
+            quitQuiz();
 
         });
 
@@ -100,13 +102,27 @@ public class Controller {
     private void endGame() {
 
         System.out.println("--- Game over ---");
-        questionLabel.setText("Game over 😎");
+
+        questionLabel.setText("Game over");
         imageView.setImage(null);
+
+        gridPane.getChildren().remove(imageView);
 
         choicesBox.setVisible(false);
         replyButton.setVisible(false);
         replyTextField.setVisible(false);
 
+        quitButton.setMaxWidth(Double.MAX_VALUE);
+
+
+    }
+
+    /**
+     * Todo: fix! Should return to main menu, not quit the app
+     */
+
+    public void quitQuiz() {
+        Platform.exit();
     }
 
     private void displayQuestion(Question question) {
@@ -116,7 +132,6 @@ public class Controller {
 
         replyTextField.clear();
         choicesBox.getChildren().clear();
-        // multipleChoiceGroup.getToggles().clear();
 
         if (question instanceof MultipleChoiceQuestion) {
 
@@ -128,7 +143,7 @@ public class Controller {
                 choiceButton.setToggleGroup(multipleChoiceGroup);
 
                 choiceButton.setOnAction(e -> {
-                    replyUsingMultipleChoice(choiceButton);
+                    validateReply(choiceButton.getText());
                 });
 
                 choicesBox.getChildren().add(choiceButton);
@@ -144,7 +159,7 @@ public class Controller {
             choiceButton.setToggleGroup(multipleChoiceGroup);
 
             choiceButton.setOnAction(e -> {
-                replyUsingMultipleChoice(choiceButton);
+                validateReply(choiceButton.getText());
             });
 
 
@@ -176,54 +191,13 @@ public class Controller {
 
     }
 
-    /**
-     * Todo: improve
-     */
-
-    private void replyUsingMultipleChoice(RadioButton selectedRadioButton) {
-
-        String reply = selectedRadioButton.getText();
-
-        System.out.println("Multiple Choice-svar: " + reply);
-
-        validateReply(reply);
-
-
-    }
-
-    private void replyAction() {
-
-        String reply = replyTextField.getText();
-        validateReply(reply);
-
-
-        // Remove comment to disallow empty text replies
-
-        /*
-        if (reply.length() > 0) {
-
-            System.out.println(reply);
-
-
-
-        } else {
-            System.out.println("String is empty");
-        }
-        */
-
-
-    }
-
     private void validateReply(String reply) {
 
-        System.out.println("Validating: " + reply);
-
         if (controller.validateReplyForCurrentQuestion(reply)) {
-            System.out.println("Korrekt!");
-        } else {
-            System.out.println("Feil :(");
 
-            alert("Feil! Riktig svar er:", controller.getCorrectReplyForCurrentQuestion() + "\n" + "Du svarte: " + reply);
+        } else {
+
+            alert("Feil!", "Riktig svar er: " + controller.getCorrectReplyForCurrentQuestion() + "\n" + "Du svarte: " + reply);
 
 
         }

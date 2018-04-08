@@ -32,6 +32,7 @@ public class QuizController {
 
     /**
      * Burde leses fra fil?
+     * Tenker også at alle spørsmålene legges inn med 3 alternativer, men at det er random om det blir multiple choice eller tekst
      */
 
     private void addQuestions() {
@@ -77,7 +78,7 @@ public class QuizController {
                 new TextQuestion("Slovakia", "Bratislava", "flags/sk.png"),
                 new TextQuestion("Belgia", "Brussel", "flags/be.png"),
                 new TextQuestion("Romania", "Bucuresti", "flags/ro.png"),
-                new TextQuestion("Ungarn", "Ungarn", "flags/hu.png"),
+                new TextQuestion("Ungarn", "Budapest", "flags/hu.png"),
                 new TextQuestion("Moldova", "Chisinau", "flags/md.png"), // Chișinău
                 new TextQuestion("Irland", "Dublin", "flags/ie.png"),
                 new TextQuestion("Ukraina", "Kiev", "flags/ua.png"),
@@ -123,6 +124,11 @@ public class QuizController {
 
     }
 
+    /**
+     * Check if new questions can be requested
+     * @return
+     */
+
     public boolean canGetNewQuestion() {
 
         if (getNumberOfQuestionsAsked() >= getQuestionLimit()) {
@@ -138,10 +144,6 @@ public class QuizController {
     }
 
     public boolean validateReplyForCurrentQuestion(String reply) {
-
-        /**
-         * Warning: midlertidig
-         */
 
         Question question = getCurrentQuestion();
 

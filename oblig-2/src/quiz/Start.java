@@ -64,7 +64,7 @@ public class Start {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
             Stage stage = (Stage) playButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 650, 750);
+            Scene scene = new Scene(loader.load(), 550, 650);
             stage.setScene(scene);
 
         } catch (IOException io) {
