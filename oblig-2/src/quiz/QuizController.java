@@ -36,30 +36,78 @@ public class QuizController {
 
     private void addQuestions() {
 
-        MultipleChoiceQuestion germany = new MultipleChoiceQuestion("Tyskland", "Berlin", "resources/flag-de.png");
+        MultipleChoiceQuestion germany = new MultipleChoiceQuestion("Tyskland", "Berlin", "flags/de.png");
         germany.addChoice("Frankfurt");
         germany.addChoice("Hamburg");
         germany.addChoice("Köln");
 
-        MultipleChoiceQuestion finland = new MultipleChoiceQuestion("Finland", "Helsingfors", "resources/flag-fi.png");
+        MultipleChoiceQuestion finland = new MultipleChoiceQuestion("Finland", "Helsingfors", "flags/fi.png");
         finland.addChoice("Esbo");
         finland.addChoice("Lahti");
         finland.addChoice("Tampere");
 
-        MultipleChoiceQuestion netherlands = new MultipleChoiceQuestion("Nederland", "Amsterdam", "resources/flag-nl.png");
+        MultipleChoiceQuestion netherlands = new MultipleChoiceQuestion("Nederland", "Amsterdam", "flags/nl.png");
         netherlands.addChoice("Antwerpen");
         netherlands.addChoice("Brussel");
         netherlands.addChoice("Haag");
 
+        MultipleChoiceQuestion iceland = new MultipleChoiceQuestion("Island", "Reykjavik", "flags/is.png");
+        iceland.addChoice("Árborg");
+        iceland.addChoice("Kópavogur");
+        iceland.addChoice("Reykjanesbær");
+
+        MultipleChoiceQuestion poland = new MultipleChoiceQuestion("Polen", "Warszawa", "flags/pl.png");
+        poland.addChoice("Krakow");
+        poland.addChoice("Gdańsk");
+        poland.addChoice("Pionki");
 
         Collections.addAll(quizArray,
-                new TextQuestion("Norge", "Oslo", "resources/flag-no.png"),
-                new TextQuestion("Sverige", "Stockholm", "resources/flag-se.png"),
-                new TextQuestion("Danmark", "København", "resources/flag-dk.png"),
-                new TextQuestion("Polen", "Warszawa", "resources/flag-pl.png"),
+                new TextQuestion("Norge", "Oslo", "flags/no.png"),
+                new TextQuestion("Sverige", "Stockholm", "flags/se.png"),
+                new TextQuestion("Danmark", "København", "flags/dk.png"),
                 germany,
+                poland,
                 finland,
-                netherlands
+                netherlands,
+                iceland,
+                new TextQuestion("Andorra", "Andorra la Vella", "flags/ad.png"),
+                new TextQuestion("Hellas", "Aten", "flags/gr.png"),
+                new TextQuestion("Serbia", "Beograd", "flags/rs.png"),
+                new TextQuestion("Sveits", "Bern", "flags/ch.png"),
+                new TextQuestion("Slovakia", "Bratislava", "flags/sk.png"),
+                new TextQuestion("Belgia", "Brussel", "flags/be.png"),
+                new TextQuestion("Romania", "Bucuresti", "flags/ro.png"),
+                new TextQuestion("Ungarn", "Ungarn", "flags/hu.png"),
+                new TextQuestion("Moldova", "Chisinau", "flags/md.png"), // Chișinău
+                new TextQuestion("Irland", "Dublin", "flags/ie.png"),
+                new TextQuestion("Ukraina", "Kiev", "flags/ua.png"),
+                new TextQuestion("Portugal", "Lisboa", "flags/pt.png"),
+                new TextQuestion("Slovenia", "Ljubljana", "flags/si.png"),
+                new TextQuestion("Storbritannia", "London", "flags/gb.png"),
+                new TextQuestion("Luxembourg", "Luxembourg", "flags/lu.png"),
+                new TextQuestion("Spania", "Madrid", "flags/es.png"),
+                new TextQuestion("Hviterussland", "Minsk", "flags/by.png"),
+                new TextQuestion("Monaco", "Monaco", "flags/mc.png"),
+                new TextQuestion("Russland", "Moskva", "flags/ru.png"),
+                new TextQuestion("Frankrike", "Paris", "flags/fr.png"),
+                new TextQuestion("Montenegro", "Podgorica", "flags/me.png"),
+                new TextQuestion("Tsjekkia", "Praha", "flags/cz.png"),
+                new TextQuestion("Kosovo", "Pristina", "flags/ks.png"), // Priština
+                new TextQuestion("Latvia", "Riga", "flags/lv.png"),
+                new TextQuestion("Italia", "Roma", "flags/it.png"),
+                new TextQuestion("San Marino", "San Marino", "flags/sm.png"),
+                new TextQuestion("Bosnia-Hercegovina", "Sarajevo", "flags/ba.png"),
+                new TextQuestion("Makedonia", "Skopje", "flags/mk.png"),
+                new TextQuestion("Bulgaria", "Sofia", "flags/bg.png"),
+                new TextQuestion("Estland", "Tallinn", "flags/ee.png"),
+                new TextQuestion("Albania", "Tirana", "flags/al.png"),
+                new TextQuestion("Liectenstein", "Vaduz", "flags/li.png"),
+                new TextQuestion("Malta", "Valletta", "flags/mt.png"),
+                new TextQuestion("Vatikanstaten", "Vatikanstaten", "flags/va.png"),
+                new TextQuestion("Litauen", "Vilnius", "flags/lt.png"),
+                new TextQuestion("Østerrike", "Wien", "flags/at.png"),
+                new TextQuestion("Kroatia", "Zagreb", "flags/hr.png")
+
         );
 
 
