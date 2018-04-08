@@ -2,18 +2,21 @@ package quiz;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class Start {
 
-    public GridPane gridPane;
+    public BorderPane borderPane;
 
     private Label welcomeLabel;
     private Label subtitleLabel;
@@ -51,6 +54,7 @@ public class Start {
         });
 
         HBox hBox = new HBox(10);
+        hBox.setAlignment(Pos.CENTER);
         hBox.getChildren().addAll(radioButton1, radioButton2, radioButton3);
 
         playButton = new Button("Start");
@@ -64,11 +68,37 @@ public class Start {
 
         subtitleLabel = new Label("Velg antall spørsmål");
 
+        /**
+         * Collect them all in layouts
+         */
+
+        // Center
+
+        VBox vBox = new VBox(10);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.getChildren().addAll(welcomeLabel, subtitleLabel, hBox);
+
+        // Bottom
+
+        GridPane bottomPane = new GridPane();
+        bottomPane.setVgap(10);
+        bottomPane.setHgap(10);
+        bottomPane.setMinHeight(90);
+        bottomPane.setAlignment(Pos.CENTER);
+        bottomPane.getStyleClass().add("bottomPane");
+
+        bottomPane.add(playButton, 0, 0);
+
+
+        borderPane.setCenter(vBox);
+        borderPane.setBottom(bottomPane);
+
+        /*
         gridPane.add(welcomeLabel, 0, 0);
         gridPane.add(subtitleLabel, 0, 1);
         gridPane.add(hBox, 0, 2);
         gridPane.add(playButton, 0, 3);
-
+*/
 
 
 
@@ -85,7 +115,7 @@ public class Start {
             Parent root = loader.load();
 
             Stage stage = (Stage) playButton.getScene().getWindow();
-            Scene scene = new Scene(root, 550, 570);
+            Scene scene = new Scene(root, 550, 600);
 
             stage.setScene(scene);
 
