@@ -20,22 +20,35 @@ public class Start {
     private Button playButton;
     private ToggleGroup quizGroup;
 
+    private int questionLimit;
+
     @FXML
     public void initialize() {
+
+        questionLimit = 10;
 
         quizGroup = new ToggleGroup();
 
         RadioButton radioButton1 = new RadioButton("10");
         radioButton1.setToggleGroup(quizGroup);
         radioButton1.setSelected(true);
+        radioButton1.setOnAction(e -> {
+            setQuestionLimit(10);
+        });
 
-        RadioButton radioButton2 = new RadioButton("20");
+        RadioButton radioButton2 = new RadioButton("25");
         radioButton2.setToggleGroup(quizGroup);
         radioButton2.setSelected(false);
+        radioButton2.setOnAction(e -> {
+            setQuestionLimit(25);
+        });
 
-        RadioButton radioButton3 = new RadioButton("45 (alle)");
+        RadioButton radioButton3 = new RadioButton("45");
         radioButton3.setToggleGroup(quizGroup);
         radioButton3.setSelected(false);
+        radioButton3.setOnAction(e -> {
+            setQuestionLimit(45);
+        });
 
         HBox hBox = new HBox(10);
         hBox.getChildren().addAll(radioButton1, radioButton2, radioButton3);
@@ -65,7 +78,7 @@ public class Start {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
 
-            Controller quizController = new Controller(20);
+            Controller quizController = new Controller(getQuestionLimit());
             loader.setController(quizController);
 
             Parent root = loader.load();
@@ -79,6 +92,14 @@ public class Start {
             io.printStackTrace();
         }
 
+    }
+
+    public int getQuestionLimit() {
+        return questionLimit;
+    }
+
+    private void setQuestionLimit(int questionLimit) {
+        this.questionLimit = questionLimit;
     }
 
 
