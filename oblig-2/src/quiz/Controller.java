@@ -55,16 +55,11 @@ public class Controller {
             replyAction();
         });
 
+        replyButton.setMaxWidth(Double.MAX_VALUE);
+
         statusLabel = new Label();
 
         choicesBox = new HBox(15);
-
-        gridPane.add(questionLabel, 0, 0);
-        gridPane.add(imageView, 0, 1);
-        gridPane.add(replyTextField, 0, 2);
-        gridPane.add(choicesBox, 0, 3);
-        gridPane.add(replyButton, 0, 4);
-        gridPane.add(statusLabel, 0, 5);
 
 
         /**
@@ -72,10 +67,16 @@ public class Controller {
          */
         Button testButton = new Button("Vis startskjerm [beta]");
         testButton.setOnAction(e -> {
-            // displayWelcomeScreen();
+            displayWelcomeScreen();
         });
 
-        // gridPane.add(testButton, 0, 6);
+        gridPane.add(questionLabel, 0, 0);
+        gridPane.add(imageView, 0, 1);
+        gridPane.add(replyTextField, 0, 2);
+        gridPane.add(choicesBox, 0, 3);
+        gridPane.add(replyButton, 0, 4);
+        gridPane.add(statusLabel, 0, 5);
+        gridPane.add(testButton, 0, 6);
 
         loadNextQuestion();
 
@@ -88,16 +89,20 @@ public class Controller {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("Start.fxml"));
 
-        /*
+        try {
 
-        Parent root = loader.load();
-        stage.setTitle("Quiz");
-        stage.setScene(new Scene(root, 750, 800));
-        stage.setMinWidth(400);
-        stage.setMinHeight(400);
-        stage.show();
+            Parent root = loader.load();
+            stage.setTitle("Quiz");
+            stage.setScene(new Scene(root, 450, 450));
+            stage.setMinWidth(400);
+            stage.setMinHeight(400);
+            stage.show();
 
-        */
+        } catch (Exception e) {
+            System.out.println("Couldn't load stage");
+        }
+
+
 
     }
 
@@ -107,7 +112,6 @@ public class Controller {
 
     private void loadNextQuestion() {
         Question question = controller.getRandomQuestion();
-
         displayQuestion(question);
     }
 
@@ -128,6 +132,11 @@ public class Controller {
                 RadioButton choiceButton = new RadioButton();
                 choiceButton.setText(choice);
                 choiceButton.setToggleGroup(multipleChoiceGroup);
+
+                choiceButton.setOnAction(e -> {
+                    replyUsingMultipleChoice(choiceButton);
+                });
+
                 choicesBox.getChildren().add(choiceButton);
 
             }
@@ -139,13 +148,21 @@ public class Controller {
             RadioButton choiceButton = new RadioButton();
             choiceButton.setText(multi.getCorrectReply());
             choiceButton.setToggleGroup(multipleChoiceGroup);
+
+            choiceButton.setOnAction(e -> {
+                replyUsingMultipleChoice(choiceButton);
+            });
+
+
             choicesBox.getChildren().add(choiceButton);
 
             replyTextField.setVisible(false);
+            replyButton.setVisible(false);
 
         } else {
             replyTextField.setVisible(true);
             replyTextField.requestFocus();
+            replyButton.setVisible(true);
 
         }
 
@@ -161,6 +178,21 @@ public class Controller {
     private void updateStatus() {
 
         statusLabel.setText("" + controller.getCorrectReplies() + " / " + controller.getTotalNumberOfQuestions());
+
+    }
+
+    /**
+     * Todo: improve
+     */
+
+    private void replyUsingMultipleChoice(RadioButton selectedRadioButton) {
+
+        String reply = selectedRadioButton.getText();
+
+        System.out.println("Multiple Choice-svar: " + reply);
+
+        validateReply(reply);
+
 
     }
 
