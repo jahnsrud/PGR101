@@ -1,6 +1,17 @@
 .root {
     -fx-background-color: white;
-    -fx-font-family: "Helvetica Neue", Helvetica, sans-serif;
+    -fx-font-family: Arial, Helvetica, sans-serif;
+}
+
+.bottomPane {
+    -fx-background-color: #EBEBEB;
+}
+
+.topLabel {
+    -fx-text-fill: #747474;
+    -fx-font-size: 10pt;
+    -fx-font-weight: bold;
+
 }
 
 .titleLabel {
@@ -14,11 +25,21 @@
 
 }
 
+.statusLabel {
+    -fx-text-fill: #7a7a7a;
+    -fx-font-size: 14pt;
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-background-radius: 24px;
+    -fx-font-weight: bold;
+    -fx-font-size: 12pt;
+}
+
 .replyButton {
     -fx-background-color: black;
     -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
 
 }
 
@@ -29,6 +50,7 @@
 .quitButton {
     -fx-background-color: #ff4050;
     -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
 
 .quitButton:hover {

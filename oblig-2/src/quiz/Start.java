@@ -85,7 +85,7 @@ public class Start {
             Parent root = loader.load();
 
             Stage stage = (Stage) playButton.getScene().getWindow();
-            Scene scene = new Scene(root, 550, 650);
+            Scene scene = new Scene(root, 550, 570);
 
             stage.setScene(scene);
 

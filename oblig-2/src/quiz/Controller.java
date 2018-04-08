@@ -3,13 +3,18 @@ package quiz;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import quiz.Question.MultipleChoiceQuestion;
 import quiz.Question.Question;
@@ -18,7 +23,8 @@ public class Controller {
 
     private QuizController controller;
 
-    public GridPane gridPane;
+    public BorderPane borderPane;
+    private Label topLabel;
     private Label questionLabel;
     private ImageView imageView;
     private TextField replyTextField;
@@ -41,8 +47,13 @@ public class Controller {
     @FXML
     public void initialize() {
 
-        questionLabel = new Label("Spørsmål");
+        topLabel = new Label("HVA ER HOVEDSTADEN I");
+        topLabel.getStyleClass().add("topLabel");
+        topLabel.setTextAlignment(TextAlignment.CENTER);
+
+        questionLabel = new Label("Land");
         questionLabel.getStyleClass().add("titleLabel");
+        questionLabel.setTextAlignment(TextAlignment.CENTER);
 
         imageView = new ImageView();
         imageView.setFitHeight(174);
@@ -56,7 +67,7 @@ public class Controller {
         });
 
         replyButton = new Button("Svar");
-        replyButton.getStyleClass().add("replyButton");
+        replyButton.getStyleClass().addAll("replyButton", "button");
         replyButton.setOnAction(e -> {
             validateReply(replyTextField.getText());
         });
@@ -64,24 +75,55 @@ public class Controller {
         replyButton.setMaxWidth(Double.MAX_VALUE);
 
         statusLabel = new Label();
-
-        choicesBox = new HBox(15);
+        statusLabel.getStyleClass().add("statusLabel");
+        statusLabel.setTextAlignment(TextAlignment.CENTER);
+        statusLabel.setMaxWidth(Double.MAX_VALUE);
 
         quitButton = new Button("Avslutt");
-        quitButton.getStyleClass().add("quitButton");
+        quitButton.getStyleClass().addAll("quitButton", "button");
         quitButton.setOnAction(e -> {
             quitQuiz();
 
         });
 
+        /**
+         * Prepare the layout by adding nodes to panes
+         */
 
-        gridPane.add(questionLabel, 0, 0);
-        gridPane.add(imageView, 0, 1);
-        gridPane.add(replyTextField, 0, 2);
-        gridPane.add(choicesBox, 0, 3);
-        gridPane.add(replyButton, 0, 4);
-        gridPane.add(statusLabel, 0, 5);
-        gridPane.add(quitButton, 0,6);
+        choicesBox = new HBox(15);
+
+        // Top
+        BorderPane topPane = new BorderPane();
+        topPane.setMargin(statusLabel, new Insets(20, 20, 20, 20));
+        topPane.setMargin(quitButton, new Insets(20, 20, 20, 20));
+
+        topPane.setLeft(statusLabel);
+        topPane.setRight(quitButton);
+
+        // Quiz area
+
+        VBox quizArea = new VBox(6);
+        quizArea.setAlignment(Pos.CENTER);
+        quizArea.setMargin(imageView, new Insets(40, 0, 0, 0));
+        quizArea.getChildren().addAll(topLabel, questionLabel, imageView);
+
+        // Bottom
+
+        GridPane bottomPane = new GridPane();
+        bottomPane.setAlignment(Pos.CENTER);
+        bottomPane.setHgap(10);
+        bottomPane.getStyleClass().add("bottomPane");
+        bottomPane.setMinHeight(90);
+
+        bottomPane.add(choicesBox, 0, 0);
+        bottomPane.add(replyTextField, 0, 0);
+        bottomPane.add(replyButton, 1, 0);
+
+
+
+        borderPane.setCenter(quizArea);
+        borderPane.setBottom(bottomPane);
+        borderPane.setTop(topPane);
 
         loadNextQuestion();
 
@@ -109,10 +151,9 @@ public class Controller {
 
         System.out.println("--- Game over ---");
 
-        questionLabel.setText("Game over");
+        topLabel.setText("Game over");
+        questionLabel.setText("Takk for at du spilte!");
         imageView.setImage(null);
-
-        gridPane.getChildren().remove(imageView);
 
         choicesBox.setVisible(false);
         replyButton.setVisible(false);
@@ -132,11 +173,15 @@ public class Controller {
     public void quitQuiz() {
 
         Platform.exit();
+
+
+
+
     }
 
     private void displayQuestion(Question question) {
 
-        questionLabel.setText("Hva er hovedstaden i " + question.getQuestion() + "?");
+        questionLabel.setText(question.getQuestion() + "?");
         imageView.setImage(new Image(question.getImageLocation()));
 
         replyTextField.clear();
@@ -195,11 +240,11 @@ public class Controller {
 
     private void updateStatus() {
 
-        String status = controller.getCorrectReplies() + " / " + controller.getNumberOfQuestionsAsked();
+        String status = controller.getCorrectReplies() + "/" + controller.getNumberOfQuestionsAsked();
 
         if (controller.canGetNewQuestion()) {
 
-            status = status + "\n" + "Antall spørsmål totalt: " + controller.getQuestionLimit();
+            status = status + " " + "(" + controller.getQuestionLimit() + ")";
 
         }
 

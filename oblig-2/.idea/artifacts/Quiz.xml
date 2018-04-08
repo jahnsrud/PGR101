@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Quiz">
+    <output-path>$PROJECT_DIR$/out/artifacts/Quiz</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="quiz.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="Quiz" />
+        <option name="vendor" value="Markus Jahnsrud" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="oblig_2_intellij.jar">
+        <element id="module-output" name="oblig-2-intellij" />
+      </element>
+    </root>
+  </artifact>
+</component>
