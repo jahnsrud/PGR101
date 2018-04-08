@@ -7,10 +7,12 @@ import javafx.scene.layout.HBox;
 
 public class Start {
 
-    public Label welcomeLabel;
-    public Button playButton;
-    public ToggleGroup quizGroup;
     public GridPane gridPane;
+
+    private Label welcomeLabel;
+    private Label subtitleLabel;
+    private Button playButton;
+    private ToggleGroup quizGroup;
 
     @FXML
     public void initialize() {
@@ -39,11 +41,15 @@ public class Start {
             System.out.println("kommer her");
         });
 
-        welcomeLabel = new Label("Velg antall spørsmål");
+        welcomeLabel = new Label("Europeiske hovedsteder");
+        welcomeLabel.getStyleClass().add("titleLabel");
+
+        subtitleLabel = new Label("Velg antall spørsmål");
 
         gridPane.add(welcomeLabel, 0, 0);
-        gridPane.add(hBox, 0, 1);
-        gridPane.add(playButton, 0, 2);
+        gridPane.add(subtitleLabel, 0, 1);
+        gridPane.add(hBox, 0, 2);
+        gridPane.add(playButton, 0, 3);
 
 
 

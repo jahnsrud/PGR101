@@ -6,6 +6,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:id="gridPane" fx:controller="quiz.Start" hgap="10" vgap="10" stylesheets="quiz/Style.css">
+<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:id="gridPane" fx:controller="quiz.Start" alignment="center" hgap="10" vgap="10" stylesheets="quiz/Style.css">
 
 </GridPane>

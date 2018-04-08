@@ -111,6 +111,11 @@ public class Controller {
         System.out.println("Game over 😎");
         alert("Game over 😎", "Todo: fix");
         questionLabel.setText("Game over 😎");
+
+        choicesBox.setVisible(false);
+        replyButton.setVisible(false);
+        replyTextField.setVisible(false);
+
     }
 
     private void displayQuestion(Question question) {
