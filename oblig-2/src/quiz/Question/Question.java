@@ -16,23 +16,12 @@ public abstract class Question {
         return question;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
     public String getCorrectReply() {
         return correctReply;
-    }
-
-    public void setCorrectReply(String correctReply) {
-        this.correctReply = correctReply;
     }
 
     public String getImageLocation() {
         return imageLocation;
     }
 
-    public void setImageLocation(String imageLocation) {
-        this.imageLocation = imageLocation;
-    }
 }

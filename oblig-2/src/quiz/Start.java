@@ -34,12 +34,10 @@ public class Start {
 
         quizGroup = new ToggleGroup();
 
-        HBox hBox = new HBox(20);
-        hBox.setAlignment(Pos.CENTER);
+        welcomeLabel = new Label("Europeiske hovedsteder");
+        welcomeLabel.getStyleClass().add("titleLabel");
 
-        addRadioButton("10", 10, hBox, true);
-        addRadioButton("25", 25, hBox, false);
-        addRadioButton("45", 45, hBox, false);
+        subtitleLabel = new Label("Velg antall spørsmål");
 
         playButton = new Button("START");
         playButton.getStyleClass().addAll("playButton", "button");
@@ -48,14 +46,19 @@ public class Start {
         });
         playButton.setPadding(new Insets(10, 90, 10, 90));
 
-        welcomeLabel = new Label("Europeiske hovedsteder");
-        welcomeLabel.getStyleClass().add("titleLabel");
+        // Horizontal layout for our radio buttons
 
-        subtitleLabel = new Label("Velg antall spørsmål");
+        HBox hBox = new HBox(20);
+        hBox.setAlignment(Pos.CENTER);
 
-        /**
-         * Collect them all in layouts
-         */
+        addRadioButton("10", 10, hBox, true);
+        addRadioButton("25", 25, hBox, false);
+        addRadioButton("45", 45, hBox, false);
+
+
+        //
+        // Collect them all in layouts
+        //
 
         // Center
 
@@ -76,22 +79,9 @@ public class Start {
 
         bottomPane.add(playButton, 0, 0);
 
-
         borderPane.setCenter(vBox);
         borderPane.setBottom(bottomPane);
 
-    }
-
-    private void addRadioButton(String title, int limit, HBox hBox, boolean selected) {
-
-        RadioButton radioButton = new RadioButton(title);
-        radioButton.setToggleGroup(quizGroup);
-        radioButton.setSelected(selected);
-        radioButton.setOnAction(e -> {
-            setQuestionLimit(limit);
-        });
-
-        hBox.getChildren().add(radioButton);
     }
 
     private void startGame() {
@@ -101,6 +91,7 @@ public class Start {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
 
+            // Use Controller with the constructor to pass parameters
             Controller quizController = new Controller(getQuestionLimit(), startScene);
             loader.setController(quizController);
 
@@ -117,7 +108,24 @@ public class Start {
 
     }
 
-    public int getQuestionLimit() {
+    /**
+     * Helper method for adding radio buttons
+     */
+
+    private void addRadioButton(String title, int limit, HBox hBox, boolean selected) {
+
+        RadioButton radioButton = new RadioButton(title);
+        radioButton.setToggleGroup(quizGroup);
+        radioButton.setSelected(selected);
+        radioButton.setOnAction(e -> {
+            setQuestionLimit(limit);
+        });
+
+        hBox.getChildren().add(radioButton);
+    }
+
+
+    private int getQuestionLimit() {
         return questionLimit;
     }
 
